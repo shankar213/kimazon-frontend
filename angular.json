@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "kimazon-ui"
+    }
+  },
+  "defaultProject": "kimazon-ui",
+  "cli": {
+    "analytics": "1ed9866d-359a-4fa4-b65e-690c12737473"
+  }
 }
