@@ -1,0 +1,130 @@
+<div id="auth-container">
+  <div id="form-auth">
+    <div class="row justify-content-md-center">
+      <div class="col ">
+        <!-- Default form register -->
+        <form class="bg-white border border-light p-5">
+
+          <p class="h4 mb-4 text-center">Sign up As a {{user.role | titlecase}}</p>
+
+          <div class="form-row mb-4">
+            <div class="col">
+              <div class="md-form">
+                <input mdbInput mdbValidate name="firstName" type="text" id="firstName"
+                       class="form-control"
+                       [(ngModel)]="user.first_name" #firstName="ngModel" required>
+                <label for="firstName">First Name</label>
+                <mdb-error *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">First
+                  Name
+                  Please
+                </mdb-error>
+                <mdb-success *ngIf="firstName.valid && (firstName.dirty || firstName.touched)">
+                  <mdb-icon fas icon="check" size="lg"></mdb-icon>
+                </mdb-success>
+              </div>
+            </div>
+            <div class="col">
+              <!-- Last name -->
+              <div class="md-form">
+                <input mdbInput mdbValidate name="lastName" type="text" id="lastName"
+                       class="form-control"
+                       [(ngModel)]="user.last_name" #lastName="ngModel" required>
+                <label for="lastName">Last Name</label>
+                <mdb-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">First Name
+                  Please
+                </mdb-error>
+                <mdb-success *ngIf="lastName.valid && (lastName.dirty || lastName.touched)">
+                  <mdb-icon fas icon="check" size="lg"></mdb-icon>
+                </mdb-success>
+              </div>
+            </div>
+          </div>
+
+          <!-- E-mail -->
+          <div class="md-form">
+            <input mdbInput mdbValidate name="email" type="email" id="email" class="form-control"
+                   [(ngModel)]="user.email"
+                   #email="ngModel" required pattern="[^ @]*@[^ @]*">
+            <label for="email">Email</label>
+            <mdb-error *ngIf="email.invalid && (email.dirty || email.touched)">Please enter a valid Email
+              Address
+            </mdb-error>
+            <mdb-success *ngIf="email.valid && (email.dirty || email.touched)">
+              <mdb-icon fas icon="check" size="lg"></mdb-icon>
+            </mdb-success>
+          </div>
+
+          <!-- Password -->
+          <div class="md-form">
+            <input mdbInput mdbValidate name="password" type="password" id="password" class="form-control"
+                   [(ngModel)]="user.password"
+                   #password="ngModel" required>
+            <label for="password">Password </label>
+            <mdb-error *ngIf="password.invalid && (password.dirty || password.touched)">Please enter
+              Password
+            </mdb-error>
+            <mdb-success *ngIf="password.valid && (password.dirty || password.touched)">
+              <mdb-icon fas icon="check" size="lg"></mdb-icon>
+            </mdb-success>
+          </div>
+          <!-- Confirm Password -->
+          <div class="md-form">
+            <input mdbInput mdbValidate name="cPassword" type="password" id="cPassword" class="form-control"
+                   [(ngModel)]="user.c_password"
+                   #cPassword="ngModel" required>
+            <label for="cPassword">Confirm Password </label>
+            <mdb-error *ngIf="cPassword.invalid && (cPassword.dirty || cPassword.touched)">Please Confirm
+              Password
+            </mdb-error>
+            <mdb-success *ngIf="cPassword.valid && (cPassword.dirty || cPassword.touched)">
+              <mdb-icon fas icon="check" size="lg"></mdb-icon>
+            </mdb-success>
+          </div>
+
+
+          <!-- E-mail -->
+          <div class="md-form">
+            <input mdbInput mdbValidate name="phone" type="email" id="phone" class="form-control"
+                   [(ngModel)]="user.phone"
+                   #phone="ngModel" required pattern="[0-9- ]+">
+            <label for="phone">Phone</label>
+            <mdb-error *ngIf="phone.invalid && (phone.dirty || phone.touched)">Please enter a valid Phone
+              Number
+            </mdb-error>
+            <mdb-success *ngIf="phone.valid && (phone.dirty || phone.touched)">
+              <mdb-icon fas icon="check" size="lg"></mdb-icon>
+            </mdb-success>
+          </div>
+
+          <!-- Sign up button -->
+          <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="submitRegister()">Sign
+            Up
+          </button>
+
+          <!-- Register -->
+          <p>Already member?
+            <a [routerLink]="['/auth/login']">Login</a>
+          </p>
+
+          <!-- Register -->
+          <p *ngIf="user.role === 'CUSTOMER'" class="blue-text">
+            <a (click)="setSeller()">I want to become a seller</a>
+          </p>
+          <p *ngIf="user.role === 'SELLER'" class="blue-text">
+            <a (click)="setCustomer()">Not A Merchant? You are on wrong page.<br> click here to register as
+              Customer</a>
+          </p>
+
+          <hr>
+
+          <!-- Terms of service -->
+          <p>By clicking
+            <em>Sign up</em> you agree to our
+            <a href="" target="_blank">terms of service</a></p>
+        </form>
+        <!-- Default form register -->
+      </div>
+    </div>
+
+  </div>
+</div>
