@@ -1,0 +1,7 @@
+main {
+  padding-top: 3rem;
+}
+
+.home-menu-profile:hover .profile-submenu {
+  display: inherit;
+}

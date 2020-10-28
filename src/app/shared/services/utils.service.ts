@@ -11,7 +11,6 @@ import {ToastrService} from 'ngx-toastr';
   providedIn: 'root'
 })
 export class UtilsService {
-  public urlConstant: any;
   private previousUrl: string = undefined;
   private currentUrl: string = undefined;
 
@@ -39,10 +38,17 @@ export class UtilsService {
     return 'http://' + environment.api_host + ':' + environment.api_host_port + param1.prefix + param2 + param3;
   }
 
+  isLoggedIn() {
+    return this.getLocalStorageItem(APP_CONSTANTS.FIELD_USER_ID);
+  }
+
+  getLocalStorageItem(key) {
+    return localStorage.getItem(key);
+  }
+
   callGetAPI(url): any {
     return this.http.get(url, this.setHeader());
   }
-
 
   callPostAPI(url, body): any {
     return this.http.post(url, body, this.setHeader());

@@ -18,4 +18,13 @@ export class SessionService {
   setType(type: string): void {
     this._utilService.setLocalStorage('role', type);
   }
+
+  logout() {
+    this.destroySession();
+    this._router.navigate(['/public']);
+  }
+
+  destroySession() {
+    window.localStorage.clear();
+  }
 }

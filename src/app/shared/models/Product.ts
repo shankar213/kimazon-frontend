@@ -1,0 +1,11 @@
+export class Product {
+    id: number;
+    name: string;
+    brand: string;
+    description: string;
+    seller_id: number;
+    price: number;
+    images: string[];
+    qty: number;
+    category: string;
+}

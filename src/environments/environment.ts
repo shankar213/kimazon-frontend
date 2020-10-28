@@ -10,6 +10,10 @@ export const environment = {
     prefix: '/api/users',
     register: '/register',
     login: '/login'
+  },
+  products: {
+    prefix: '/api/products',
+    get_products: '/filter'
   }
 };
 
