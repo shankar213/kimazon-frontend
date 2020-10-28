@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { SessionService } from './session.service';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {APP_CONSTANTS} from '../constants/app-constants';
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +25,13 @@ export class ProductService {
       .post(url, formData);
   }
 
+
+  getProductsForSeller(): any  {
+    let url = `${this._utilsService.linkGeneration(environment.products, environment.products.products_for_seller)}`;
+    url = url.replace(':seller_id', this._utilsService.getLocalStorageItem(APP_CONSTANTS.FIELD_USER_ID));
+    console.log(url);
+    return this._utilsService.callGetAPI(url);
+  }
   getProducts(body): any {
     const url = `${this._utilsService.linkGeneration(environment.products, environment.products.get_products)}`;
     console.log(url);

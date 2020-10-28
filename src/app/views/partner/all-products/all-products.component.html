@@ -1,5 +1,29 @@
-<p>all-products works!</p>
+<div class="row justify-content-md-center">
+  <div class="col col-lg-10 col-md-10">
+    <p class="h4 mb-4 text-center">All Product</p>
+    <table id="tableSortExample" mdbTable class="z-depth-1">
+      <thead>
+      <tr>
+        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col"
+            [mdbTableSort]="products" [sortBy]="headElements[i]">{{head | titlecase}}
+          <!--            <mdb-icon fas icon="sort"></mdb-icon>-->
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let el of products; let i = index">
+        <td>{{el.name}}</td>
+        <td>{{el.brand}}</td>
+        <td>{{el.price}}</td>
+        <td>{{el.qty}}</td>
+        <td><button class="btn"> EDIT</button> </td>
+        <td><button class="btn"> DELETE</button> </td>
+      </tr>
+      </tbody>
+    </table>
+    <button mdbBtn color="info" block="true" class="my-4" type="submit" [routerLink]="['/partner/add-product']">Add
+      New Product
+    </button>
 
-<button mdbBtn color="info" block="true" class="my-4" type="submit" [routerLink]="['/partner/add-product']">Add
-  New Product
-</button>
+  </div>
+</div>
