@@ -1,0 +1,110 @@
+<div class="row justify-content-md-center">
+  <div class="col col-lg-8">
+    <form class="bg-white border border-light p-5" *ngIf="!imageUpload">
+      <p class="h4 mb-4 text-center">Add New Product</p>
+      <div class="md-form">
+        <input mdbInput mdbValidate name="productName" type="text" id="productName"
+               class="form-control"
+               [(ngModel)]="product.name" #productName="ngModel" required>
+        <label for="productName">Product Name</label>
+        <mdb-error *ngIf="productName.invalid && (productName.dirty || productName.touched)">
+          Product Name Please
+        </mdb-error>
+        <mdb-success *ngIf="productName.valid && (productName.dirty || productName.touched)">
+          <mdb-icon fas icon="check" size="lg"></mdb-icon>
+        </mdb-success>
+      </div>
+      <div class="md-form">
+        <input mdbInput mdbValidate name="brandName" type="text" id="brandName"
+               class="form-control"
+               [(ngModel)]="product.brand" #brandName="ngModel" required>
+        <label for="productName">Brand Name</label>
+        <mdb-error *ngIf="brandName.invalid && (brandName.dirty || brandName.touched)">
+          Brand Name Please
+        </mdb-error>
+        <mdb-success *ngIf="brandName.valid && (brandName.dirty || brandName.touched)">
+          <mdb-icon fas icon="check" size="lg"></mdb-icon>
+        </mdb-success>
+      </div>
+      <div class="md-form"> {{ product.category}} {{ product.name}}
+        <select class="browser-default custom-select md-select" name="category"  [(ngModel)]="product.category" #category="ngModel" (ngModelChange)="onCategorySelected($event)">
+          <option selected="" value="" required="">Select Category</option>
+          <option>Computer and Accessory</option>
+          <option>Clothes</option>
+          <option>Shoes</option>
+          <option>Cosmetics</option>
+          <option>Home Appliances</option>
+          <option>Grocery</option>
+        </select>
+
+      </div>
+      <!-- E-mail -->
+      <div class="md-form">
+                <textarea id="description" class="md-textarea form-control" rows="3" name="description"
+                          [(ngModel)]="product.description" #description="ngModel" required></textarea>
+        <label for="description">Description</label>
+        <mdb-error *ngIf="description.invalid && (description.dirty || description.touched)">
+          Please enter a Product Description
+        </mdb-error>
+        <mdb-success *ngIf="description.valid && (description.dirty || description.touched)">
+          <mdb-icon fas icon="check" size="lg"></mdb-icon>
+        </mdb-success>
+      </div>
+
+      <!-- price -->
+      <div class="md-form">
+        <input mdbInput mdbValidate name="price" type="text" id="price" class="form-control"
+               [(ngModel)]="product.price"
+               #price="ngModel" required>
+        <label for="price">price </label>
+        <mdb-error *ngIf="price.invalid && (price.dirty || price.touched)">Please enter
+          price
+        </mdb-error>
+        <mdb-success *ngIf="price.valid && (price.dirty || price.touched)">
+          <mdb-icon fas icon="check" size="lg"></mdb-icon>
+        </mdb-success>
+      </div>
+
+      <!-- qty -->
+      <div class="md-form">
+        <input mdbInput mdbValidate name="qty" type="number" id="qty" class="form-control"
+               [(ngModel)]="product.qty"
+               #qty="ngModel" required>
+        <label for="qty">qty </label>
+        <mdb-error *ngIf="qty.invalid && (qty.dirty || qty.touched)">Please enter
+          qty
+        </mdb-error>
+        <mdb-success *ngIf="qty.valid && (qty.dirty || qty.touched)">
+          <mdb-icon fas icon="check" size="lg"></mdb-icon>
+        </mdb-success>
+      </div>
+
+      <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="addProduct()">Add Product
+      </button>
+
+    </form>
+    <div class="col " *ngIf="imageUpload">
+
+      <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+        <ngx-dropzone-label>
+          <div>
+            <h2>Add Images for Product</h2>
+          </div>
+        </ngx-dropzone-label>
+        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
+                                    [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-image-preview>
+      </div>
+
+      <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="uploadFiles()">Upload Files
+      </button>
+      <button mdbBtn color="info" block="true" class="my-4" type="submit"
+              (click)="skipToAllProcuts()" [routerLink]="['/partner/products']">{{skipButtonText}}
+      </button>
+    </div>
+
+
+  </div>
+</div>
+

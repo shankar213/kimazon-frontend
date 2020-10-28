@@ -19,12 +19,26 @@ export class SessionService {
     this._utilService.setLocalStorage('role', type);
   }
 
-  logout() {
+  logout(): any {
     this.destroySession();
     this._router.navigate(['/public']);
   }
 
-  destroySession() {
+  destroySession(): any {
     window.localStorage.clear();
+  }
+
+
+  addSessionItem(key, value): any {
+    window.sessionStorage.setItem(key, value);
+  }
+
+  getSessionItem(key): any {
+    return window.sessionStorage.getItem(key);
+  }
+
+  removeSessionItem(key): any {
+    window.sessionStorage.removeItem(key);
+
   }
 }

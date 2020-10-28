@@ -3,6 +3,7 @@ import { UtilsService } from './utils.service';
 import { environment } from '../../../environments/environment';
 import { SessionService } from './session.service';
 import { HttpClient } from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -14,10 +15,23 @@ export class ProductService {
               private _httpClient: HttpClient) {
   }
 
-  getProducts(body) {
+  postFile(fileToUpload: File, productId): Observable<any> {
+    let url = `${this._utilsService.linkGeneration(environment.products, environment.products.add_product_image)}`;
+    url = url.replace(':product_id', productId);
+    const formData: FormData = new FormData();
+    formData.append('image', fileToUpload, fileToUpload.name);
+    return this._httpClient
+      .post(url, formData);
+  }
+
+  getProducts(body): any {
     const url = `${this._utilsService.linkGeneration(environment.products, environment.products.get_products)}`;
     console.log(url);
     return this._utilsService.callPostAPI(url, body);
   }
 
+  addProduct(reqBody: any): any {
+    const url = `${this._utilsService.linkGeneration(environment.products, environment.products.add_product)}`;
+    return this._utilsService.callPostAPI(url, reqBody);
+  }
 }
