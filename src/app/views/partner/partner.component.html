@@ -1,0 +1,57 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark blue lighten-1" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" href="#"><h3>KimaZon</h3></a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/partner/products']">Products<span class="sr-only">(current)</span></a>
+      </li>
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link waves-light" mdbWavesEffect>Features</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>-->
+<!--      </li>-->
+    </ul>
+    <!-- Links -->
+
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item avatar dropdown" dropdown *ngIf="_utilService.isLoggedIn(); else notLoggedIn">
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
+           mdbWavesEffect>
+          <mdb-icon fas icon="user-circle" size="2x"></mdb-icon>
+        </a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item" [routerLink]="['/public/profile']">Profile</a>
+          <a class="dropdown-item" [routerLink]="['/auth/password-change']">Change Password</a>
+          <a class="dropdown-item" (click)="_sessionService.logout()">Logout</a>
+        </div>
+      </li>
+
+
+      <ng-template #notLoggedIn>
+        <li class="nav-item waves-light" mdbWavesEffect [routerLink]="['/auth/register']">
+          <a class="nav-link">Register</a>
+        </li>
+        <li class="nav-item waves-light" mdbWavesEffect [routerLink]="['/auth/login']">
+          <a class="nav-link">Login</a>
+        </li>
+      </ng-template>
+
+    </ul>
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar -->
+<main class="pb-2">
+  <router-outlet></router-outlet>
+</main>
+
+

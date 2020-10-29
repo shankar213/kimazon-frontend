@@ -13,7 +13,10 @@ export const environment = {
   },
   products: {
     prefix: '/api/products',
-    get_products: '/filter'
+    add_product: '/',
+    get_products: '/filter',
+    add_product_image: '/:product_id/image',
+    products_for_seller: '/seller/:seller_id',
   }
 };
 

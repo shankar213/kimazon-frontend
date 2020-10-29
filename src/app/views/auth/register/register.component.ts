@@ -29,7 +29,6 @@ export class RegisterComponent implements OnInit {
     reqBody[APP_CONSTANTS.FIELD_USER_DETAILS] = this.user;
     this._authService.registerUser(reqBody).subscribe(response => {
       const data = response[APP_CONSTANTS.FIELD_DATA];
-      console.log(data);
       if (data && data.user_details) {
         this._utilService.toast('Registration Successfully Completed!');
         this._sessionService.setType(data.user_details.role);
