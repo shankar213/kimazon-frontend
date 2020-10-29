@@ -4,6 +4,7 @@ import {AuthService} from '../../../shared/services/auth.service';
 import {UtilsService} from '../../../shared/services/utils.service';
 import {Router} from '@angular/router';
 import {SessionService} from '../../../shared/services/session.service';
+import {ROLES} from '../../../shared/constants/enum-constants';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,12 @@ export class LoginComponent implements OnInit {
       const data = response[APP_CONSTANTS.FIELD_DATA];
       if (data.valid) {
         this._utilService.toast('Successfully Signed in!');
-        this._router.navigate(['/public/']);
+        if (data[APP_CONSTANTS.FIELD_USER_DETAILS][APP_CONSTANTS.FIELD_ROLE] === ROLES.SELLER.code) {
+          this._router.navigate(['/partner/']);
+        }
+        else {
+          this._router.navigate(['/public/']);
+        }
       } else if (!data.valid && response.errors) {
         this._utilService.toast(response.errors, 'Error!', 'error');
       } else {
