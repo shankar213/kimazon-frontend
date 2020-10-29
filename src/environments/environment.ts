@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_host: 'localhost',
+  api_host: 'kimazonapi-env.eba-mvwtqmxk.us-west-2.elasticbeanstalk.com',
   api_host_port: 8081,
   auth: {
     prefix: '/api/users',
