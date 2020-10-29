@@ -9,7 +9,8 @@ export const environment = {
   auth: {
     prefix: '/api/users',
     register: '/register',
-    login: '/login'
+    login: '/login',
+    send_security_code: '/send-security-code'
   },
   products: {
     prefix: '/api/products',

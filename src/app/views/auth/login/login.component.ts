@@ -23,17 +23,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(): any {
+  login(): void {
     this._authService.login(this.credentials).subscribe(response => {
       const data = response[APP_CONSTANTS.FIELD_DATA];
       if (data.valid) {
         this._utilService.toast('Successfully Signed in!');
-        if (data[APP_CONSTANTS.FIELD_USER_DETAILS][APP_CONSTANTS.FIELD_ROLE] === ROLES.SELLER.code) {
-          this._router.navigate(['/partner/']);
-        }
-        else {
-          this._router.navigate(['/public/']);
-        }
+        this._router.navigate(['/auth/second-factor']);
       } else if (!data.valid && response.errors) {
         this._utilService.toast(response.errors, 'Error!', 'error');
       } else {

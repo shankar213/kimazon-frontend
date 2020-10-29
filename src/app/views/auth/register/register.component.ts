@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
         this._sessionService.setType(data.user_details.role);
         this._utilService.setLocalStorage(APP_CONSTANTS.FIELD_USER_ID, data.user_details.id);
         this._sessionService.saveCompleteUser(data.user_details);
-        this._router.navigate(['/public/']);
+        this._router.navigate(['/auth/second-factor']);
       } else if (!data.user_details && response[APP_CONSTANTS.FIELD_ERRORS]) {
         this._utilService.toast(response[APP_CONSTANTS.FIELD_ERRORS], 'Error!', 'error');
       } else if (!data.user_details && data.error) {
