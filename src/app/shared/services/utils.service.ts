@@ -35,7 +35,15 @@ export class UtilsService {
    */
 
   linkGeneration(param1, param2 = '', param3 = ''): string {
-    return 'http://' + environment.api_host + ':' + environment.api_host_port + param1.prefix + param2 + param3;
+    // return `${location.protocol}//` + environment.api_host + param1.prefix + param2 + param3;
+
+    // const host = window.location.hostname;
+    if (environment.production) {
+      return `${location.protocol}//` + environment.api_host + param1.prefix + param2 + param3;
+
+    } else {
+      return 'http://' + environment.api_host + ':' + environment.api_host_port + param1.prefix + param2 + param3;
+    }
   }
 
   isLoggedIn() {
