@@ -13,6 +13,7 @@ import {ProductService} from "../../../shared/services/product.service";
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
   filter: any = {};
+  product_count = 0;
 
 
   constructor(private _productService: ProductService,
@@ -34,6 +35,7 @@ export class ProductsComponent implements OnInit {
         return;
       }
       this.products = data.products;
+      this.product_count = data.product_count;
     });
   }
 

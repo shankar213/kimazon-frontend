@@ -1,26 +1,32 @@
 <div class="row">
-  <div class="col lg-8 md-7 sx-6"><h1> Products </h1></div>
-  <div class="col lg-4 md-5 xs-6">
-    <div class="row">
-      <select class="browser-default custom-select md-select col xs-6" name="category" [(ngModel)]="filter.category"
-              #category="ngModel" (ngModelChange)="onCategorySelected($event)">
-        <option selected="" value="" required="">Select Category</option>
-        <option>Computer and Accessory</option>
-        <option>Clothes</option>
-        <option>Shoes</option>
-        <option>Cosmetics</option>
-        <option>Home Appliances</option>
-        <option>Grocery</option>
-      </select>
+  <div class="col-md-6 align-self-center"><h1> Products </h1></div>
+  <div class="col-md-6 align-self-center">
+    <div class="row justify-content-center">
+
+      <div class="col-md-2 align-self-center" >
+        <label style="font-size: 20px; font-weight: bold">Filters: </label>
+      </div>
+      <div class="md-form col-md-4 align-self-center">
+        <select class="browser-default custom-select md-select col xs-6" name="category" [(ngModel)]="filter.category"
+                #category="ngModel" (ngModelChange)="onCategorySelected($event)">
+          <option selected="" value="" required="">Select Category</option>
+          <option>Computer and Accessory</option>
+          <option>Clothes</option>
+          <option>Shoes</option>
+          <option>Cosmetics</option>
+          <option>Home Appliances</option>
+          <option>Grocery</option>
+        </select>
+      </div>
       <!-- price -->
-      <div class="md-form col sx-3" >
+      <div class="md-form col-md-3 align-self-center">
         <input mdbInput name="minPrice" type="text" id="min-price" class="form-control"
                [(ngModel)]="filter.price.min" #minPrice="ngModel" required (change)="getAllProducts()">
         <label for="min-price">Min Price </label>
       </div>
 
       <!-- price -->
-      <div class="md-form col sx-3" >
+      <div class="md-form col-md-3 align-self-center" >
         <input mdbInput name="minPrice" type="text" id="max-price" class="form-control"
                [(ngModel)]="filter.price.max" #maxPrice="ngModel" required (change)="getAllProducts()">
         <label for="min-price">Max price </label>
@@ -33,20 +39,25 @@
 
 
 <div class="row justify-content-md-center">
-  <div class="col col-lg-3 col-md-3" *ngFor="let product of products">
+
+  <div *ngIf="product_count === 0">
+    <h2>No Products found!</h2>
+  </div>
+
+  <div class="col col-lg-3 col-md-3" *ngFor="let product of products" style="margin-top: 10px">
 
     <!-- Card -->
     <div class="card ">
       <!-- Card content -->
       <div class="card-body">
         <!-- Card image -->
-        <img class="card-img-top" src="{{product.images[0]}}"
+        <img class="card-img-top img-size" src="{{product.images[0]}}"
              alt="Card image cap">
         <!-- Title -->
         <h4 class="card-title"><a>{{product.name}}</a></h4>
         <h5 class="card-title"><a>{{product.brand}}</a></h5>
         <!-- Text -->
-        <p class="card-text">{{product.description}}</p>
+        <h5 class="card-title">$ {{product.price}}</h5>
 
         <!-- Button -->
         <ng-container>
