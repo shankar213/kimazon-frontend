@@ -1,0 +1,38 @@
+
+<div id="auth-container">
+  <div id="form-auth">
+    <div class="row justify-content-md-center">
+      <div class="col "><!-- Default form login -->
+        <form class="bg-white border border-light p-5">
+
+          <p class="h4 mb-4 text-center">We have sent you and Email with the secutity code</p>
+
+          <!-- Email -->
+          <div class="md-form">
+            <input mdbInput mdbValidate name="email" type="email" id="email" class="form-control" disabled
+                   value="{{user.email}}" required>
+            <label for="email">Email</label>
+          </div>
+          <!-- Password -->
+          <div class="md-form">
+            <input mdbInput mdbValidate name="password" type="text" id="password" class="form-control"
+                   [(ngModel)]="securityCode" placeholder="XXXXXX"
+                   #password="ngModel" required>
+            <label for="password">One Time Security Code</label>
+            <mdb-error *ngIf="password.invalid && (password.dirty || password.touched)">Please enter
+              Password
+            </mdb-error>
+          </div>
+          <button mdbBtn color="info" block="true" class="my-4" type="submit"
+                  (click)="validateSecurityCode()">Sign
+            in
+          </button>
+
+
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</div>
