@@ -55,7 +55,6 @@ export class AddProductComponent implements OnInit {
   }
 
   uploadFile(fileToUpload): void {
-    console.log(this.product);
     this._productService.postFile(fileToUpload, this.product.id).subscribe(res => {
       const data = res.data;
       // tslint:disable-next-line:triple-equals
@@ -67,17 +66,14 @@ export class AddProductComponent implements OnInit {
       }
     }, error => {
       this._utilService.toast(error.message, 'Error!', 'error');
-      console.log(error);
     });
   }
 
   onSelect(event): void {
-    console.log(event);
     this.files.push(...event.addedFiles);
   }
 
   onRemove(event): void {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 
@@ -96,7 +92,6 @@ export class AddProductComponent implements OnInit {
   }
 
   onCategorySelected(event: any): void {
-    console.log(event);
     this.product.category = event;
   }
 }

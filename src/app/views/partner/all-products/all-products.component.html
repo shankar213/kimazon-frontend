@@ -6,18 +6,25 @@
       <tr>
         <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col"
             [mdbTableSort]="products" [sortBy]="headElements[i]">{{head | titlecase}}
-          <!--            <mdb-icon fas icon="sort"></mdb-icon>-->
+          <mdb-icon fas icon="sort"></mdb-icon>
         </th>
       </tr>
       </thead>
       <tbody>
+
       <tr *ngFor="let el of products; let i = index">
+        <th scope="row">{{el.id}}</th>
         <td>{{el.name}}</td>
         <td>{{el.brand}}</td>
+        <td>{{el.category}}</td>
         <td>{{el.price}}</td>
         <td>{{el.qty}}</td>
-        <td><button class="btn"> EDIT</button> </td>
-        <td><button class="btn"> DELETE</button> </td>
+        <td>
+          <button class="btn btn-sm"> Edit</button>
+        </td>
+        <td>
+          <button class="btn btn-sm"> DELETE</button>
+        </td>
       </tr>
       </tbody>
     </table>

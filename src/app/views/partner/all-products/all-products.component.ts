@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../../shared/services/product.service';
-import { SessionService } from '../../../shared/services/session.service';
-import { Router } from '@angular/router';
-import { UtilsService } from '../../../shared/services/utils.service';
-import { Product } from '../../../shared/models/Product';
+import {Component, OnInit} from '@angular/core';
+import {ProductService} from '../../../shared/services/product.service';
+import {SessionService} from '../../../shared/services/session.service';
+import {Router} from '@angular/router';
+import {UtilsService} from '../../../shared/services/utils.service';
+import {Product} from '../../../shared/models/Product';
 
 @Component({
   selector: 'app-all-products',
@@ -19,15 +19,11 @@ export class AllProductsComponent implements OnInit {
               private _utilService: UtilsService) {
   }
 
-
   elements: any = [];
-  headElements = ['Product Name', 'Brand', 'Price', 'Qty'];
+  headElements = ['id', 'name', 'brand', 'category', 'price', 'qty'];
 
-  ngOnInit(): void  {
+  ngOnInit(): void {
     this.getAllProducts();
-    for (let i = 1; i <= 15; i++) {
-      this.elements.push({id: i, first: 'User ' + i, last: 'Name ' + i, handle: 'Handle ' + i});
-    }
   }
 
   private getAllProducts(): void {

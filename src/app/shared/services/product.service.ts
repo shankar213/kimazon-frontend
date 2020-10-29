@@ -29,12 +29,10 @@ export class ProductService {
   getProductsForSeller(): any  {
     let url = `${this._utilsService.linkGeneration(environment.products, environment.products.products_for_seller)}`;
     url = url.replace(':seller_id', this._utilsService.getLocalStorageItem(APP_CONSTANTS.FIELD_USER_ID));
-    console.log(url);
     return this._utilsService.callGetAPI(url);
   }
   getProducts(body): any {
     const url = `${this._utilsService.linkGeneration(environment.products, environment.products.get_products)}`;
-    console.log(url);
     return this._utilsService.callPostAPI(url, body);
   }
 
