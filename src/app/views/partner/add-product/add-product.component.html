@@ -79,8 +79,8 @@
         </mdb-success>
       </div>
 
-      <button class="btn-background" type="submit" (click)="addProduct()">Add Product
-      </button>
+      <button class="btn-background" type="submit" (click)="addProduct()" *ngIf="!isEdit">Add Product</button>
+      <button class="btn-background" type="submit" (click)="editProduct()" *ngIf="isEdit">Edit Product</button>
 
     </form>
     <div class="col " *ngIf="imageUpload">
