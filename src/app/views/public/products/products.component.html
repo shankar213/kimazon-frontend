@@ -47,26 +47,157 @@
   <div class="col col-lg-3 col-md-3" *ngFor="let product of products" style="margin-top: 10px">
 
     <!-- Card -->
-    <div class="card ">
+    <div class="card" (click)="selectedProduct = product ;frame.show()">
       <!-- Card content -->
       <div class="card-body">
         <!-- Card image -->
         <img class="card-img-top img-size" src="{{product.images[0]}}"
              alt="Card image cap">
         <!-- Title -->
-        <h4 class="card-title"><a>{{product.name}}</a></h4>
-        <h5 class="card-title"><a>{{product.brand}}</a></h5>
+        <h4 class="card-title item-title"><a>{{product.name}}</a></h4>
+        <label class="card-title item-brand"><a>{{product.brand}}</a></label>
         <!-- Text -->
-        <h5 class="card-title">$ {{product.price}}</h5>
+        <div class="row">
+          <div class="col-md-6 ">
+            <ng-container>
+              <button class="btn btn-primary cart-btn">Add To Cart</button>
+            </ng-container>
+          </div>
+          <div class="col-md-6 text-right"><h4 class="card-title text-success">$ {{product.price}}</h4></div>
+
+        </div>
+
 
         <!-- Button -->
-        <ng-container>
-          <button class="btn btn-primary">Add To Cart</button>
-        </ng-container>
+
 
       </div>
 
     </div>
     <!-- Card -->
   </div>
+
+<!--  <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"-->
+<!--       aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-notify modal-info" role="document">-->
+<!--      &lt;!&ndash;Content&ndash;&gt;-->
+<!--      <div class="modal-content">-->
+<!--        &lt;!&ndash;Header&ndash;&gt;-->
+<!--        <div class="modal-header">-->
+<!--          <p class="heading lead">Product Description</p>-->
+
+<!--          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">-->
+<!--            <span aria-hidden="true" class="white-text">&times;</span>-->
+<!--          </button>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash;Body&ndash;&gt;-->
+<!--        <div class="modal-body">-->
+<!--          <div class="text-center">-->
+<!--            <div *ngIf="selectedProduct !== null">-->
+<!--              <img class="card-img-top img-size" src="{{selectedProduct.images[0]}}"-->
+<!--                   alt="Card image cap">-->
+<!--              <h4 class="card-title">Product Name: <a>{{selectedProduct.name}}</a></h4>-->
+<!--              <h5 class="card-title">Product Brand: <a>{{selectedProduct.brand}}</a></h5>-->
+<!--              <h5 class="card-title">Product Price: $ {{selectedProduct.price}}</h5>-->
+<!--              <h5 class="card-title">Product Description: {{selectedProduct.description}}</h5>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash;Footer&ndash;&gt;-->
+<!--        <div class="modal-footer justify-content-center">-->
+<!--          <a type="button" mdbBtn color="primary" class="waves-light" mdbWavesEffect>Add to Cart</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      &lt;!&ndash;/.Content&ndash;&gt;-->
+<!--    </div>-->
+<!--  </div>-->
+
+
 </div>
+
+<div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" *ngIf="selectedProduct">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-5">
+            <!--Carousel Wrapper-->
+            <mdb-carousel [isControls]="true" [animation]="'slide'">
+              <!--First slide-->
+              <mdb-slide *ngFor="let image of selectedProduct.images ">
+                <img class="d-block w-100" src="{{image}}"
+                     alt="First slide">
+              </mdb-slide>
+              <!--/First slide-->
+              <!--                &lt;!&ndash;Second slide&ndash;&gt;-->
+              <!--                <mdb-slide>-->
+              <!--                  <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/img%20(24).jpg"-->
+              <!--                       alt="Second slide">-->
+              <!--                </mdb-slide>-->
+              <!--                &lt;!&ndash;/Second slide&ndash;&gt;-->
+              <!--                &lt;!&ndash;Third slide&ndash;&gt;-->
+              <!--                <mdb-slide>-->
+              <!--                  <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/img%20(25).jpg"-->
+              <!--                       alt="Third slide">-->
+              <!--                </mdb-slide>-->
+              <!--                &lt;!&ndash;/Third slide&ndash;&gt;-->
+            </mdb-carousel>
+            <!--/.Carousel Wrapper-->
+          </div>
+          <div class="col-lg-7">
+            <h2 class="h2-responsive product-name">
+              <strong>{{selectedProduct.name}}</strong>
+            </h2>
+            <h4 class="h4-responsive">
+              <span class="green-text">
+                <strong>${{selectedProduct.price}}</strong>
+              </span>
+            </h4>
+
+            <!--Accordion wrapper-->
+            <!--                <mdb-item [collapsed]="true" *ngFor="let item of itemsList">-->
+
+            <div> {{ selectedProduct.brand }} </div>
+            <!--                </mdb-item>-->
+            <!--/.Accordion wrapper-->
+
+            <!-- Add to Cart -->
+            <div class="card-body">
+              <!--                <div class="row">-->
+              <!--                  <div class="col-md-6">-->
+              <!--                    <div class="md-form">-->
+              <!--                      <mdb-select [options]="colorSelect" placeholder="Choose your color"></mdb-select>-->
+              <!--                    </div>-->
+              <!--                  </div>-->
+              <!--                  <div class="col-md-6">-->
+              <!--                    <div class="md-form">-->
+              <!--                      <mdb-select [options]="sizeSelect" placeholder="Choose your size"></mdb-select>-->
+              <!--                    </div>-->
+              <!--                  </div>-->
+              <!--                </div>-->
+              <div class="text-center">
+
+                <button type="button" mdbBtn color="secondary" class="waves-light" mdbWavesEffect (click)="frame.hide()"
+                        data-dismiss="modal">Close</button>
+                <button mdbBtn color="primary" class="waves-light" mdbWavesEffect>Add to cart
+                  <mdb-icon fas icon="cart-plus" class="ml-2" aria-hidden="true"></mdb-icon>
+                </button>
+              </div>
+            </div>
+            <!-- /.Add to Cart -->
+          </div>
+          <div class="col-lg-12">
+            <h3>Product Details</h3>
+            <div> {{ selectedProduct.description }} </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

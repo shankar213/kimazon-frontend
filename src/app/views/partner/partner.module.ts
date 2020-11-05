@@ -9,14 +9,16 @@ import {AddProductComponent} from './add-product/add-product.component';
 import {AllProductsComponent} from './all-products/all-products.component';
 
 @NgModule({
-  declarations: [PartnerComponent, AddProductComponent, AllProductsComponent],
-  imports: [
-    CommonModule,
-    PartnerRoutingModule,
-    FormsModule,
-    MDBBootstrapModule,
-    NgxDropzoneModule
-  ]
+    declarations: [PartnerComponent, AddProductComponent, AllProductsComponent],
+    exports: [
+    ],
+    imports: [
+        CommonModule,
+        PartnerRoutingModule,
+        FormsModule,
+        MDBBootstrapModule,
+        NgxDropzoneModule
+    ]
 })
 export class PartnerModule {
 }
