@@ -1,0 +1,12 @@
+.modal-dialog.modal-notify.modal-info .modal-header {
+  background: #fc5c65;
+}
+
+.cart-btn{
+ white-space: nowrap;
+}
+
+.item-title,  .item-brand{
+  white-space: nowrap;
+  overflow: hidden;
+}

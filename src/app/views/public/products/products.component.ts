@@ -14,7 +14,7 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   filter: any = {};
   product_count = 0;
-
+  selectedProduct = null;
 
   constructor(private _productService: ProductService,
               private _sessionService: SessionService,
@@ -43,4 +43,6 @@ export class ProductsComponent implements OnInit {
     this.filter.category = event;
     this.getAllProducts();
   }
+
+
 }
