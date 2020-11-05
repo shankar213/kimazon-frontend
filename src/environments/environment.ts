@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_host: 'kimazonapi-env.eba-mvwtqmxk.us-west-2.elasticbeanstalk.com',
+  api_host: 'localhost',
   api_host_port: 8081,
   auth: {
     prefix: '/api/users',
@@ -16,6 +16,9 @@ export const environment = {
     prefix: '/api/products',
     add_product: '/',
     get_products: '/filter',
+    get_product_details: '/:product_id',
+    edit_product: '/:product_id',
+    delete_product: '/:product_id',
     add_product_image: '/:product_id/image',
     products_for_seller: '/seller/:seller_id',
   }
