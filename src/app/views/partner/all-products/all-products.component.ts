@@ -37,4 +37,21 @@ export class AllProductsComponent implements OnInit {
     });
   }
 
+  goToEdit(id: number) {
+    this._router.navigate(['/partner/add-product/' + id ], { queryParams: { edit: true }});
+  }
+
+  deleteProduct(id: number) {
+    this._productService.deleteProduct(id).subscribe((response: any) => {
+      const data = response.data;
+      if (!data) {
+        this._utilService.toast('Unable to Delete the product', 'Error!', 'error');
+        return;
+      }else {
+        this._utilService.toast('Product Deleted Successfully', 'Deleted!', 'success');
+      }
+      this.getAllProducts();
+    });
+
+  }
 }

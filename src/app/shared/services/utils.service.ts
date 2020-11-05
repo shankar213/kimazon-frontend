@@ -61,6 +61,12 @@ export class UtilsService {
   callPostAPI(url, body): any {
     return this.http.post(url, body, this.setHeader());
   }
+  callPutAPI(url, body): any {
+    return this.http.put(url, body, this.setHeader());
+  }
+  callDeleteApi(url): any {
+    return this.http.delete(url, this.setHeader());
+  }
 
   /**
    *
