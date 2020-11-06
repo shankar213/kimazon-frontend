@@ -4,7 +4,6 @@ import {AuthService} from '../../../shared/services/auth.service';
 import {UtilsService} from '../../../shared/services/utils.service';
 import {Router} from '@angular/router';
 import {SessionService} from '../../../shared/services/session.service';
-import {ROLES} from '../../../shared/constants/enum-constants';
 
 @Component({
   selector: 'app-login',

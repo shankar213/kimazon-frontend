@@ -29,13 +29,12 @@
           <div class="d-flex justify-content-around">
             <div>
               <!-- Forgot password -->
-              <a href="#">Forgot password?</a>
+              <a [routerLink]="['/auth/forgot-password']">Forgot password?</a>
             </div>
           </div>
 
           <!-- Sign in button -->
-          <button class="btn-background" type="submit" (click)="login()">Sign in
-          </button>
+          <button class="btn-background" type="submit" (click)="login()">Sign in</button>
 
           <!-- Register -->
           <p>Not a member?
