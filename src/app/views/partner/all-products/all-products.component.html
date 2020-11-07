@@ -12,7 +12,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let el of products; let i = index">
-        <th scope="row">{{el.id}}</th>
+        <th scope="row">{{i+1}}</th>
         <td>{{el.name}}</td>
         <td>{{el.brand}}</td>
         <td>{{el.category}}</td>

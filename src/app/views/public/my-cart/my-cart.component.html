@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col lg-8 md-7 sx-6"><h1> My Cart </h1></div>
+
+</div>
+
+
+<div class="row justify-content-md-center">
+    <div class="col col-lg-3 col-md-3" *ngFor="let product of products">
+
+        <!-- Card -->
+        <div class="card ">
+            <!-- Card content -->
+            <div class="card-body">
+                <!-- Card image -->
+                <img class="card-img-top img-size" src="{{product.images[0]}}"
+                     alt="Card image cap">
+                <!-- Title -->
+                <h4 class="card-title"><a>{{product.name}}</a></h4>
+                <h5 class="card-title"><a>{{product.brand}}</a></h5>
+                <!-- Text -->
+                <p class="card-text">{{product.description}}</p>
+                <button class="btn btn-background" (click)="removeFromCart(product.id)">Remove</button>
+            </div>
+
+        </div>
+        <!-- Card -->
+    </div>
+</div>

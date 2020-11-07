@@ -7,10 +7,11 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ProductsComponent } from './products/products.component';
 import { FormsModule } from '@angular/forms';
 import {PartnerModule} from "../partner/partner.module";
+import {MyCartComponent} from "./my-cart/my-cart.component";
 
 
 @NgModule({
-  declarations: [PublicComponent, ProductsComponent],
+  declarations: [PublicComponent, ProductsComponent, MyCartComponent],
     imports: [
         CommonModule,
         PublicRoutingModule,

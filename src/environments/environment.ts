@@ -22,6 +22,7 @@ export const environment = {
     delete_product: '/:product_id',
     add_product_image: '/:product_id/image',
     products_for_seller: '/seller/:seller_id',
+    get_products_selectedids: '/selectedids'
   }
 };
 

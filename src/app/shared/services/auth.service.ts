@@ -58,11 +58,8 @@ export class AuthService {
     return this._utilsService.callPostAPI(url, body);
   }
 
-
   sendEmailForVerification(body) {
     const url = this._utilsService.linkGeneration(environment.auth, environment.auth.send_security_code);
     return this._utilsService.callPostAPI(url, body);
   }
-
-
 }
