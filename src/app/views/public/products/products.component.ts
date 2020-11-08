@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {UtilsService} from "../../../shared/services/utils.service";
 import {Product} from "../../../shared/models/Product";
 import {ProductService} from "../../../shared/services/product.service";
+import {APP_CONSTANTS} from "../../../shared/constants/app-constants";
 
 @Component({
   selector: 'app-products',
@@ -14,6 +15,7 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   filter: any = {};
   product_count = 0;
+  cartItemIds: number[];
   selectedProduct = null;
 
   constructor(private _productService: ProductService,
@@ -25,6 +27,8 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.getAllProducts();
     this.filter.price = {};
+    const cartString = this._utilService.getLocalStorageItem(APP_CONSTANTS.FIELD_CART_ITEM_IDS);
+    this.cartItemIds = cartString ? JSON.parse(cartString) : [];
   }
 
   getAllProducts() {
@@ -44,5 +48,23 @@ export class ProductsComponent implements OnInit {
     this.getAllProducts();
   }
 
+  addToCart(itemId: number) {
+    if (this._sessionService.getUser()) {
+      if (!this.cartItemIds.includes(itemId)) {
+        this.cartItemIds.push(itemId);
+      }
+      this._utilService.setLocalStorage(APP_CONSTANTS.FIELD_CART_ITEM_IDS, JSON.stringify(this.cartItemIds));
+    } else {
+      this._router.navigate(['/auth/login']);
+    }
 
+  }
+
+  removeFromCart(id: number) {
+    const index = this.cartItemIds.indexOf(id);
+    if (index > -1) {
+      this.cartItemIds.splice(index, 1);
+    }
+    this._utilService.setLocalStorage(APP_CONSTANTS.FIELD_CART_ITEM_IDS, JSON.stringify(this.cartItemIds));
+  }
 }

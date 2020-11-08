@@ -47,21 +47,26 @@
   <div class="col col-lg-3 col-md-3" *ngFor="let product of products" style="margin-top: 10px">
 
     <!-- Card -->
-    <div class="card" (click)="selectedProduct = product ;frame.show()">
+    <div class="card">
       <!-- Card content -->
       <div class="card-body">
-        <!-- Card image -->
-        <img class="card-img-top img-size" src="{{product.images[0]}}"
-             alt="Card image cap">
-        <!-- Title -->
-        <h4 class="card-title item-title"><a>{{product.name}}</a></h4>
-        <label class="card-title item-brand"><a>{{product.brand}}</a></label>
+        <div (click)="selectedProduct = product ;frame.show()">
+          <!-- Card image -->
+          <img class="card-img-top img-size" src="{{product.images[0]}}"
+               alt="Card image cap">
+          <!-- Title -->
+          <h4 class="card-title item-title"><a>{{product.name}}</a></h4>
+          <label class="card-title item-brand"><a>{{product.brand}}</a></label>
+        </div>
         <!-- Text -->
         <div class="row">
           <div class="col-md-6 ">
-            <ng-container>
-              <button class="btn btn-primary cart-btn">Add To Cart</button>
+            <ng-container *ngIf="!cartItemIds.includes(product.id); else removeFromCartBlock">
+              <button class="btn btn-primary cart-btn" (click)="addToCart(product.id)">Add To Cart</button>
             </ng-container>
+            <ng-template #removeFromCartBlock>
+              <button class="btn btn-danger" (click)="removeFromCart(product.id)">Remove</button>
+            </ng-template>
           </div>
           <div class="col-md-6 text-right"><h4 class="card-title text-success">$ {{product.price}}</h4></div>
 
@@ -76,43 +81,6 @@
     </div>
     <!-- Card -->
   </div>
-
-<!--  <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"-->
-<!--       aria-hidden="true">-->
-<!--    <div class="modal-dialog modal-notify modal-info" role="document">-->
-<!--      &lt;!&ndash;Content&ndash;&gt;-->
-<!--      <div class="modal-content">-->
-<!--        &lt;!&ndash;Header&ndash;&gt;-->
-<!--        <div class="modal-header">-->
-<!--          <p class="heading lead">Product Description</p>-->
-
-<!--          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">-->
-<!--            <span aria-hidden="true" class="white-text">&times;</span>-->
-<!--          </button>-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash;Body&ndash;&gt;-->
-<!--        <div class="modal-body">-->
-<!--          <div class="text-center">-->
-<!--            <div *ngIf="selectedProduct !== null">-->
-<!--              <img class="card-img-top img-size" src="{{selectedProduct.images[0]}}"-->
-<!--                   alt="Card image cap">-->
-<!--              <h4 class="card-title">Product Name: <a>{{selectedProduct.name}}</a></h4>-->
-<!--              <h5 class="card-title">Product Brand: <a>{{selectedProduct.brand}}</a></h5>-->
-<!--              <h5 class="card-title">Product Price: $ {{selectedProduct.price}}</h5>-->
-<!--              <h5 class="card-title">Product Description: {{selectedProduct.description}}</h5>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash;Footer&ndash;&gt;-->
-<!--        <div class="modal-footer justify-content-center">-->
-<!--          <a type="button" mdbBtn color="primary" class="waves-light" mdbWavesEffect>Add to Cart</a>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      &lt;!&ndash;/.Content&ndash;&gt;-->
-<!--    </div>-->
-<!--  </div>-->
 
 
 </div>
@@ -131,19 +99,6 @@
                 <img class="d-block w-100" src="{{image}}"
                      alt="First slide">
               </mdb-slide>
-              <!--/First slide-->
-              <!--                &lt;!&ndash;Second slide&ndash;&gt;-->
-              <!--                <mdb-slide>-->
-              <!--                  <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/img%20(24).jpg"-->
-              <!--                       alt="Second slide">-->
-              <!--                </mdb-slide>-->
-              <!--                &lt;!&ndash;/Second slide&ndash;&gt;-->
-              <!--                &lt;!&ndash;Third slide&ndash;&gt;-->
-              <!--                <mdb-slide>-->
-              <!--                  <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/img%20(25).jpg"-->
-              <!--                       alt="Third slide">-->
-              <!--                </mdb-slide>-->
-              <!--                &lt;!&ndash;/Third slide&ndash;&gt;-->
             </mdb-carousel>
             <!--/.Carousel Wrapper-->
           </div>
@@ -182,9 +137,17 @@
 
                 <button type="button" mdbBtn color="secondary" class="waves-light" mdbWavesEffect (click)="frame.hide()"
                         data-dismiss="modal">Close</button>
-                <button mdbBtn color="primary" class="waves-light" mdbWavesEffect>Add to cart
-                  <mdb-icon fas icon="cart-plus" class="ml-2" aria-hidden="true"></mdb-icon>
-                </button>
+<!--                <button mdbBtn color="primary" class="waves-light" mdbWavesEffect>Add to cart-->
+<!--                  <mdb-icon fas icon="cart-plus" class="ml-2" aria-hidden="true"></mdb-icon>-->
+<!--                </button>-->
+                <ng-container *ngIf="!cartItemIds.includes(selectedProduct.id); else removeFromCartBlock">
+                  <button class="btn btn-primary cart-btn" (click)="addToCart(selectedProduct.id)">Add To Cart
+                    <mdb-icon fas icon="cart-plus" class="ml-2" aria-hidden="true"></mdb-icon>
+                  </button>
+                </ng-container>
+                <ng-template #removeFromCartBlock>
+                  <button class="btn btn-danger" (click)="removeFromCart(selectedProduct.id)">Remove</button>
+                </ng-template>
               </div>
             </div>
             <!-- /.Add to Cart -->

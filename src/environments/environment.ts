@@ -10,7 +10,8 @@ export const environment = {
     prefix: '/api/users',
     register: '/register',
     login: '/login',
-    send_security_code: '/send-security-code'
+    send_security_code: '/send-security-code',
+    password_reset_email: '/password-change-request'
   },
   products: {
     prefix: '/api/products',
@@ -21,6 +22,7 @@ export const environment = {
     delete_product: '/:product_id',
     add_product_image: '/:product_id/image',
     products_for_seller: '/seller/:seller_id',
+    get_products_selectedids: '/selectedids'
   }
 };
 

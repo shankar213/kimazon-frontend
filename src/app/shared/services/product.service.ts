@@ -5,7 +5,6 @@ import {SessionService} from './session.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {APP_CONSTANTS} from '../constants/app-constants';
-import {DB_CONSTANTS} from '../constants/db-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +41,7 @@ export class ProductService {
     const url = `${this._utilsService.linkGeneration(environment.products, environment.products.add_product)}`;
     return this._utilsService.callPostAPI(url, reqBody);
   }
+
   editProduct(productId: any, reqBody): any {
     let url = `${this._utilsService.linkGeneration(environment.products, environment.products.edit_product)}`;
     url = url.replace(':product_id', productId.toString());
@@ -58,5 +58,11 @@ export class ProductService {
     let url = `${this._utilsService.linkGeneration(environment.products, environment.products.get_product_details)}`;
     url = url.replace(':product_id', productId.toString());
     return this._utilsService.callGetAPI(url);
+  }
+
+  getProductsFromCart(body) {
+    const url = `${this._utilsService.linkGeneration(environment.products, environment.products.get_products_selectedids)}`;
+    console.log(url);
+    return this._utilsService.callPostAPI(url, body);
   }
 }

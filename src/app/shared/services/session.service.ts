@@ -44,6 +44,7 @@ export class SessionService {
   isCustomer(): any {
     return this._utilService.getLocalStorageItem(APP_CONSTANTS.FIELD_ROLE) === ROLES.CUSTOMER.code;
   }
+
   addSessionItem(key, value): any {
     window.sessionStorage.setItem(key, value);
   }
@@ -54,6 +55,5 @@ export class SessionService {
 
   removeSessionItem(key): any {
     window.sessionStorage.removeItem(key);
-
   }
 }
