@@ -14,12 +14,16 @@
                 <!-- Card image -->
                 <img class="card-img-top img-size" src="{{product.images[0]}}"
                      alt="Card image cap">
-                <!-- Title -->
-                <h4 class="card-title"><a>{{product.name}}</a></h4>
-                <h5 class="card-title"><a>{{product.brand}}</a></h5>
-                <!-- Text -->
-                <p class="card-text">{{product.description}}</p>
-                <button class="btn btn-background" (click)="removeFromCart(product.id)">Remove</button>
+              <!-- Title -->
+              <h4 class="card-title item-title"><a>{{product.name}}</a></h4>
+              <label class="card-title item-brand"><a>{{product.brand}}</a></label>
+              <div class="row">
+                <div class="col-md-6 ">
+                  <button class="btn btn-background" (click)="removeFromCart(product.id)">Remove</button>
+                </div>
+                <div class="col-md-6 text-right"><h4 class="card-title text-success">$ {{product.price}}</h4></div>
+
+
             </div>
 
         </div>
