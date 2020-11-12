@@ -19,10 +19,10 @@
               <img class="card-img-top img-size" src="{{product.images[0]}}"
                    alt="Card image cap">
               <!-- Title -->
-              <h4 class="card-title"><a>{{product.name}}</a></h4>
-              <h5 class="card-title"><a>{{product.brand}}</a></h5>
-              <!-- Text -->
-              <p class="card-text">{{product.description}}</p>
+              <h4 class="card-titleitem-title"><a>{{product.name}}</a></h4>
+              <label class="card-title item-brand"><a>{{product.brand}}</a></label>
+              <div class="row">
+              <div class="col-md-6 ">
               <div class="md-form">
                 <label>Quantity: </label>
                 <input mdbInput mdbValidate name="input" type="number" class="form-control" min="1" max="{{product.qty}}" [(ngModel)]="product.cart_qty"
@@ -30,6 +30,9 @@
                 <mdb-error *ngIf="productQtyInCart.value > product.qty">Input invalid</mdb-error>
               </div>
               <button class="btn btn-background" (click)="removeFromCart(product.id)">Remove</button>
+                </div>
+                <div class="col-md-6 text-right"><h4 class="card-title text-success">$ {{product.price}}</h4></div>
+
             </div>
 
         </div>

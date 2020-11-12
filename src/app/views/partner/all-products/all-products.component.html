@@ -10,9 +10,9 @@
         </th>
       </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="products.length > 0">
       <tr *ngFor="let el of products; let i = index">
-        <th scope="row">{{i+1}}</th>
+        <th scope="row">{{i + 1}}</th>
         <td>{{el.name}}</td>
         <td>{{el.brand}}</td>
         <td>{{el.category}}</td>
@@ -26,9 +26,16 @@
         </td>
       </tr>
       </tbody>
+      <tbody *ngIf="products.length <= 0">
+      <tr >
+        <td colspan="6" class="text-center"><h4>No Product available,</h4> <h5> Click the button below to add one</h5></td>
+      </tr>
+      </tbody>
     </table>
 
-    <button class="btn-background" type="submit" [routerLink]="['/partner/add-product']" style="margin-top: 10px">Add New Product</button>
+    <button class="btn-background" type="submit" [routerLink]="['/partner/add-product']" style="margin-top: 10px">Add
+      New Product
+    </button>
 
   </div>
 </div>
