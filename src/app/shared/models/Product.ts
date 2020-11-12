@@ -8,4 +8,5 @@ export class Product {
     images: string[];
     qty: number;
     category: string;
+    cart_qty: number = 1;
 }

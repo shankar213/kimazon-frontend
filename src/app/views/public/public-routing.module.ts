@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {PublicComponent} from './public.component';
 import {ProductsComponent} from './products/products.component';
 import {MyCartComponent} from "./my-cart/my-cart.component";
+import {CheckoutComponent} from "./checkout/checkout.component";
 
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'products', pathMatch: 'full'},
       {path: 'products', component: ProductsComponent, pathMatch: 'full'},
-      {path: 'my-cart', component: MyCartComponent, pathMatch: 'full'}
+      {path: 'my-cart', component: MyCartComponent, pathMatch: 'full'},
+      {path: 'checkout', component: CheckoutComponent, pathMatch: 'full'}
     ]
   }
 ];
