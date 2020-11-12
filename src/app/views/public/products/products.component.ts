@@ -15,7 +15,7 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   filter: any = {};
   product_count = 0;
-  cartItemIds: number[];
+  cartItems: {};
   selectedProduct = null;
 
   constructor(private _productService: ProductService,
@@ -27,8 +27,8 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.getAllProducts();
     this.filter.price = {};
-    const cartString = this._utilService.getLocalStorageItem(APP_CONSTANTS.FIELD_CART_ITEM_IDS);
-    this.cartItemIds = cartString ? JSON.parse(cartString) : [];
+    const cartString = this._utilService.getLocalStorageItem(APP_CONSTANTS.FIELD_CART_ITEMS);
+    this.cartItems = cartString ? JSON.parse(cartString) : {};
   }
 
   getAllProducts() {
@@ -50,10 +50,8 @@ export class ProductsComponent implements OnInit {
 
   addToCart(itemId: number) {
     if (this._sessionService.getUser()) {
-      if (!this.cartItemIds.includes(itemId)) {
-        this.cartItemIds.push(itemId);
-      }
-      this._utilService.setLocalStorage(APP_CONSTANTS.FIELD_CART_ITEM_IDS, JSON.stringify(this.cartItemIds));
+        this.cartItems[itemId] = 1;
+      this._utilService.setLocalStorage(APP_CONSTANTS.FIELD_CART_ITEMS, JSON.stringify(this.cartItems));
     } else {
       this._router.navigate(['/auth/login']);
     }
@@ -61,10 +59,8 @@ export class ProductsComponent implements OnInit {
   }
 
   removeFromCart(id: number) {
-    const index = this.cartItemIds.indexOf(id);
-    if (index > -1) {
-      this.cartItemIds.splice(index, 1);
-    }
-    this._utilService.setLocalStorage(APP_CONSTANTS.FIELD_CART_ITEM_IDS, JSON.stringify(this.cartItemIds));
+    delete this.cartItems[id]
+    console.log(this.cartItems)
+    this._utilService.setLocalStorage(APP_CONSTANTS.FIELD_CART_ITEMS, JSON.stringify(this.cartItems));
   }
 }

@@ -61,7 +61,7 @@
         <!-- Text -->
         <div class="row">
           <div class="col-md-6 ">
-            <ng-container *ngIf="!cartItemIds.includes(product.id); else removeFromCartBlock">
+            <ng-container *ngIf="!cartItems[product.id]; else removeFromCartBlock">
               <button class="btn btn-primary cart-btn" (click)="addToCart(product.id)">Add To Cart</button>
             </ng-container>
             <ng-template #removeFromCartBlock>
@@ -140,7 +140,7 @@
 <!--                <button mdbBtn color="primary" class="waves-light" mdbWavesEffect>Add to cart-->
 <!--                  <mdb-icon fas icon="cart-plus" class="ml-2" aria-hidden="true"></mdb-icon>-->
 <!--                </button>-->
-                <ng-container *ngIf="!cartItemIds.includes(selectedProduct.id); else removeFromCartBlock">
+                <ng-container *ngIf="!cartItems[selectedProduct.id]; else removeFromCartBlock">
                   <button class="btn btn-primary cart-btn" (click)="addToCart(selectedProduct.id)">Add To Cart
                     <mdb-icon fas icon="cart-plus" class="ml-2" aria-hidden="true"></mdb-icon>
                   </button>

@@ -1,6 +1,10 @@
 <div class="row">
-    <div class="col lg-8 md-7 sx-6"><h1> My Cart </h1></div>
-
+  <div class="col lg-8 md-7 sx-6">
+    <h1> My Cart </h1>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-primary checkout-btn" (click)="redirectToCheckout()">Checkout</button>
+  </div>
 </div>
 
 
@@ -11,18 +15,44 @@
         <div class="card ">
             <!-- Card content -->
             <div class="card-body">
-                <!-- Card image -->
-                <img class="card-img-top img-size" src="{{product.images[0]}}"
-                     alt="Card image cap">
-                <!-- Title -->
-                <h4 class="card-title"><a>{{product.name}}</a></h4>
-                <h5 class="card-title"><a>{{product.brand}}</a></h5>
-                <!-- Text -->
-                <p class="card-text">{{product.description}}</p>
-                <button class="btn btn-background" (click)="removeFromCart(product.id)">Remove</button>
+              <!-- Card image -->
+              <img class="card-img-top img-size" src="{{product.images[0]}}"
+                   alt="Card image cap">
+              <!-- Title -->
+              <h4 class="card-title"><a>{{product.name}}</a></h4>
+              <h5 class="card-title"><a>{{product.brand}}</a></h5>
+              <!-- Text -->
+              <p class="card-text">{{product.description}}</p>
+              <div class="md-form">
+                <label>Quantity: </label>
+                <input mdbInput mdbValidate name="input" type="number" class="form-control" min="1" max="{{product.qty}}" [(ngModel)]="product.cart_qty"
+                       (change)="calculateTotalForOrder()" #productQtyInCart required>
+                <mdb-error *ngIf="productQtyInCart.value > product.qty">Input invalid</mdb-error>
+              </div>
+              <button class="btn btn-background" (click)="removeFromCart(product.id)">Remove</button>
             </div>
 
         </div>
         <!-- Card -->
     </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-6">
+        <label>SubTotal: ${{subTotal}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label>Tax: ${{tax}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label>Total: ${{subTotal + tax}}</label>
+      </div>
+    </div>
+  </div>
 </div>
