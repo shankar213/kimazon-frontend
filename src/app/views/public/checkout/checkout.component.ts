@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit {
 
+  hideBilling = true;
+
   constructor() { }
 
   ngOnInit(): void {

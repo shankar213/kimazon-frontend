@@ -1,1 +1,162 @@
-<p>checkout works!</p>
+<form>
+
+  <div class="sub-container border">
+    <h2>Enter Shipping Address:</h2>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="firstName">First Name</label>
+        <input mdbInput mdbValidate name="firstName" type="text" id="firstName" class="form-control" #firstName required>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="lastName">Last Name</label>
+        <input mdbInput mdbValidate name="lastName" type="text" id="lastName" class="form-control" #lastName required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="street">Street</label>
+        <input mdbInput mdbValidate name="street" type="text" id="street" class="form-control" #street required>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="unit">Company, C/O, APT, Suite, Unit</label>
+        <input mdbInput mdbValidate name="unit" type="text" id="unit" class="form-control" #unit required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="city">City</label>
+        <input mdbInput mdbValidate name="city" type="text" id="city" class="form-control" #city required>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="postalCode">Postal Code</label>
+        <input mdbInput mdbValidate name="postalCode" type="text" id="postalCode" class="form-control" #postalCode required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="state">State</label>
+        <select class="browser-default custom-select" name="state" id="state" required>
+          <option selected>Select State</option>
+          <option value="Ontario">Ontario</option>
+          <option value="Nova Scotia">Nova Scotia</option>
+          <option value="Quebec">Quebec</option>
+          <option value="California">California</option>
+          <option value="Texas">Texas</option>
+          <option value="Florida">Florida</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="country">Country</label>
+        <select class="browser-default custom-select" name="country" id="country" required>
+          <option selected>Select Country</option>
+          <option value="Canada">Canada</option>
+          <option value="USA">USA</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-container border">
+    <h2>Enter Contact Info:</h2>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="email">Email</label>
+        <input mdbInput mdbValidate name="email" type="email" id="email" class="form-control" #email required>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="phone">Phone</label>
+        <input mdbInput mdbValidate name="phone" type="number" id="phone" class="form-control" #phone required>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-container border">
+
+    <h2>Enter Billing Address:</h2>
+
+    <div class="form-row">
+      <div class="form-group col-md-6" style="padding-left: 1.5rem;">
+        <mdb-checkbox mdbInput #checkbox (change)="hideBilling = $event.checked" [checked]="hideBilling">Billing and Shipping Details are the same</mdb-checkbox>
+      </div>
+    </div>
+
+    <ng-container *ngIf="!hideBilling">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="billingFirstName">First Name</label>
+          <input mdbInput mdbValidate name="billingFirstName" type="text" id="billingFirstName" class="form-control" #billingFirstName required>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="billingLastName">Last Name</label>
+          <input mdbInput mdbValidate name="billingLastName" type="text" id="billingLastName" class="form-control" #billingLastName required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="billingStreet">Street</label>
+          <input mdbInput mdbValidate name="billingStreet" type="text" id="billingStreet" class="form-control" #billingStreet required>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="billingUnit">Company, C/O, APT, Suite, Unit</label>
+          <input mdbInput mdbValidate name="billingUnit" type="text" id="billingUnit" class="form-control" #billingUnit required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="billingCity">City</label>
+          <input mdbInput mdbValidate name="billingCity" type="text" id="billingCity" class="form-control" #billingCity required>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="billingPostalCode">Postal Code</label>
+          <input mdbInput mdbValidate name="billingPostalCode" type="text" id="billingPostalCode" class="form-control" #billingPostalCode required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="billingState">State</label>
+          <select class="browser-default custom-select" name="billingState" id="billingState" required>
+            <option selected>Select State</option>
+            <option value="Ontario">Ontario</option>
+            <option value="Nova Scotia">Nova Scotia</option>
+            <option value="Quebec">Quebec</option>
+            <option value="California">California</option>
+            <option value="Texas">Texas</option>
+            <option value="Florida">Florida</option>
+          </select>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="billingCountry">Country</label>
+          <select class="browser-default custom-select" name="billingCountry" id="billingCountry" required>
+            <option selected>Select Country</option>
+            <option value="Canada">Canada</option>
+            <option value="USA">USA</option>
+          </select>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="form-row justify-content-center">
+    <div class="form-group col-md-6">
+      <button class="btn-continue-payment" type="submit">Continue to Payment Method</button>
+    </div>
+  </div>
+
+</form>
