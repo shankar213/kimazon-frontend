@@ -66,7 +66,7 @@ export class MyCartComponent implements OnInit {
     this.tax = 0;
     this.total = 0;
     this.products.forEach((product) => {
-      this.subTotal += product.price * product.cart_qty;
+      this.subTotal += product.price * (product.cart_qty || 0);
     })
 
     this.tax = this.subTotal * 0.13;
