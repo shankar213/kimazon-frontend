@@ -4,9 +4,7 @@
       <div class="col ">
         <!-- Default form register -->
         <form class="bg-white p-5">
-
           <p class="h4 mb-4 text-center">Sign up As a {{user.role | titlecase}}</p>
-
           <div class="form-row mb-4">
             <div class="col">
               <div class="md-form">
@@ -30,8 +28,7 @@
                        class="form-control"
                        [(ngModel)]="user.last_name" #lastName="ngModel" required>
                 <label for="lastName">Last Name</label>
-                <mdb-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">First Name
-                  Please
+                <mdb-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">Last Name Please
                 </mdb-error>
                 <mdb-success *ngIf="lastName.valid && (lastName.dirty || lastName.touched)">
                   <mdb-icon fas icon="check" size="lg"></mdb-icon>
