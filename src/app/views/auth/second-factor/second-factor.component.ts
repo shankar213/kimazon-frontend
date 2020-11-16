@@ -51,6 +51,8 @@ export class SecondFactorComponent implements OnInit {
         this._router.navigate(['/partner']);
       } else if (this._sessionService.isCustomer()) {
         this._router.navigate(['/public']);
+      } else if (this._sessionService.isAdmin()) {
+        this._router.navigate(['/admin']);
       }
 
     } else {
