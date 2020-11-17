@@ -12,11 +12,12 @@ import {Product} from '../../../shared/models/Product';
   styleUrls: ['./my-cart.component.css']
 })
 export class MyCartComponent implements OnInit {
-  products: Product[] = [];
+  productsInCart: Product[] = [];
   cartItems: {};
   subTotal = 0;
   total = 0;
-  tax;
+  tax = 0;
+  orderDetails: any = {};
 
   constructor(private _productService: ProductService,
               private _sessionService: SessionService,
@@ -27,19 +28,18 @@ export class MyCartComponent implements OnInit {
   ngOnInit(): void {
     const cartString = this._utilService.getLocalStorageItem(APP_CONSTANTS.FIELD_CART_ITEMS);
     this.cartItems = cartString ? JSON.parse(cartString) : [];
-    console.log('Cart items', this.cartItems);
     this.getProductsInCart();
 
   }
 
   removeFromCart(id: number) {
-    delete this.cartItems[id]
+    delete this.cartItems[id];
     this._utilService.setLocalStorage(APP_CONSTANTS.FIELD_CART_ITEMS, JSON.stringify(this.cartItems));
     this.getProductsInCart();
   }
 
   getProductsInCart() {
-    const itemIds = Object.keys(this.cartItems)
+    const itemIds = Object.keys(this.cartItems);
     this._productService.getProductsFromCart({ids: itemIds}).subscribe((response: any) => {
       const data = response.data;
       if (!data || !data.products) {
@@ -47,17 +47,28 @@ export class MyCartComponent implements OnInit {
         return;
       }
       if (Array.isArray(data.products)) {
+        this.productsInCart = [];
         data.products.forEach((item) => {
           item.cart_qty = 1;
-          this.products.push(item)
-        })
-
+          this.productsInCart.push(item);
+        });
       }
-      this.calculateTotalForOrder()
+      this.calculateTotalForOrder();
     });
   }
 
   redirectToCheckout() {
+    const user = this._sessionService.getUser();
+    this.orderDetails.items = [];
+    this.orderDetails.customer_id = user.id;
+    this.productsInCart.forEach((product) => {
+      this.orderDetails.items.push({
+        product_id: product.id,
+        qty: product.qty,
+        unit_price: product.price
+      });
+    });
+    this._sessionService.addSessionItem(APP_CONSTANTS.FIELD_ORDER_DETAILS, JSON.stringify(this.orderDetails));
     this._router.navigate(['/public/checkout']);
   }
 
@@ -65,12 +76,11 @@ export class MyCartComponent implements OnInit {
     this.subTotal = 0;
     this.tax = 0;
     this.total = 0;
-    this.products.forEach((product) => {
+    this.productsInCart.forEach((product) => {
       this.subTotal += product.price * (product.cart_qty || 0);
-    })
-
-    this.tax = this.subTotal * 0.13;
-    this.total = this.subTotal + this.tax;
+    });
+    this.tax = Number((this.subTotal * 0.13).toFixed(2));
+    this.total = Number((this.subTotal + this.tax).toFixed(2));
   }
 
 }

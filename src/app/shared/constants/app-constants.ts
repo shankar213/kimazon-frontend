@@ -6,5 +6,6 @@ export const APP_CONSTANTS = {
   FIELD_ROLE: 'role',
   FIELD_ERRORS: 'errors',
   FIELD_PRODUCT: 'product',
-  FIELD_CART_ITEMS: 'cart_items'
+  FIELD_CART_ITEMS: 'cart_items',
+  FIELD_ORDER_DETAILS: 'order_details'
 };

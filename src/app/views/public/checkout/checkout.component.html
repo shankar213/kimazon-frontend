@@ -5,60 +5,106 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="firstName">First Name</label>
-        <input mdbInput mdbValidate name="firstName" type="text" id="firstName" class="form-control" #firstName required>
+        <div class="md-form">
+          <label for="firstName">First Name</label>
+          <input mdbInput mdbValidate name="firstName" type="text" id="firstName" class="form-control"
+                 [(ngModel)]="shipping_details.first_name" #firstName="ngModel" required>
+          <mdb-error *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">First
+            Name Please
+          </mdb-error>
+          <mdb-success *ngIf="firstName.valid && (firstName.dirty || firstName.touched)">
+            <mdb-icon fas icon="check" size="sm"></mdb-icon>
+          </mdb-success>
+        </div>
       </div>
 
       <div class="form-group col-md-6">
-        <label for="lastName">Last Name</label>
-        <input mdbInput mdbValidate name="lastName" type="text" id="lastName" class="form-control" #lastName required>
+        <div class="md-form">
+          <label for="lastName">Last Name</label>
+          <input mdbInput mdbValidate name="lastName" type="text" id="lastName" class="form-control"
+                 [(ngModel)]="shipping_details.last_name" #lastName="ngModel" required>
+          <mdb-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">Last Name Please
+          </mdb-error>
+          <mdb-success *ngIf="lastName.valid && (lastName.dirty || lastName.touched)">
+            <mdb-icon fas icon="check" size="sm"></mdb-icon>
+          </mdb-success>
+        </div>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="street">Street</label>
-        <input mdbInput mdbValidate name="street" type="text" id="street" class="form-control" #street required>
+
+        <div class="md-form">
+          <label for="street">Street</label>
+          <input mdbInput mdbValidate name="street" type="text" id="street" class="form-control"
+                 [(ngModel)]="shipping_details.street" #street="ngModel" required>
+          <mdb-error *ngIf="street.invalid && (street.dirty || street.touched)">What is you street address</mdb-error>
+          <mdb-success *ngIf="street.valid && (street.dirty || street.touched)">
+            <mdb-icon fas icon="check" size="sm"></mdb-icon>
+          </mdb-success>
+        </div>
       </div>
 
       <div class="form-group col-md-6">
-        <label for="unit">Company, C/O, APT, Suite, Unit</label>
-        <input mdbInput mdbValidate name="unit" type="text" id="unit" class="form-control" #unit required>
+
+        <div class="md-form">
+          <label for="unit">Company, C/O, APT, Suite, Unit</label>
+          <input mdbInput mdbValidate name="unit" type="text" id="unit" class="form-control"
+                 [(ngModel)]="shipping_details.unit" #unit="ngModel" >
+          <mdb-success *ngIf="unit.valid && (unit.dirty || unit.touched)">
+            <mdb-icon fas icon="check" size="sm"></mdb-icon>
+          </mdb-success>
+        </div>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="city">City</label>
-        <input mdbInput mdbValidate name="city" type="text" id="city" class="form-control" #city required>
+        <div class="md-form">
+          <label for="city">City</label>
+          <input mdbInput mdbValidate name="city" type="text" id="city" class="form-control"
+                 [(ngModel)]="shipping_details.city" #city="ngModel" required>
+          <mdb-error *ngIf="city.invalid && (city.dirty || city.touched)">What is you city?</mdb-error>
+          <mdb-success *ngIf="city.valid && (city.dirty || city.touched)">
+            <mdb-icon fas icon="check" size="sm"></mdb-icon>
+          </mdb-success>
+        </div>
       </div>
 
       <div class="form-group col-md-6">
-        <label for="postalCode">Postal Code</label>
-        <input mdbInput mdbValidate name="postalCode" type="text" id="postalCode" class="form-control" #postalCode required>
+        <div class="md-form">
+          <label for="postalCode">Postal Code</label>
+          <input mdbInput mdbValidate name="postalCode" type="text" id="postalCode" class="form-control"
+                 [(ngModel)]="shipping_details.postal" #postal="ngModel"
+                 required>
+          <mdb-error *ngIf="postal.invalid && (postal.dirty || postal.touched)">What is you postal code?</mdb-error>
+          <mdb-success *ngIf="postal.valid && (postal.dirty || postal.touched)">
+            <mdb-icon fas icon="check" size="sm"></mdb-icon>
+          </mdb-success>
+        </div>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="state">State</label>
-        <select class="browser-default custom-select" name="state" id="state" required>
-          <option selected>Select State</option>
-          <option value="Ontario">Ontario</option>
-          <option value="Nova Scotia">Nova Scotia</option>
-          <option value="Quebec">Quebec</option>
-          <option value="California">California</option>
-          <option value="Texas">Texas</option>
-          <option value="Florida">Florida</option>
+        <select class="browser-default custom-select" name="state" id="state"  [(ngModel)]="shipping_details.province"
+                required>
+          <option selected>Select Province</option>
+          <option value="ON">Ontario</option>
+          <option value="NS">Nova Scotia</option>
+          <option value="QC">Quebec</option>
+          <option value="BC">British Columbia</option>
         </select>
       </div>
 
       <div class="form-group col-md-6">
         <label for="country">Country</label>
-        <select class="browser-default custom-select" name="country" id="country" required>
+        <select class="browser-default custom-select" name="country" id="country" [(ngModel)]="shipping_details.country"
+                required>
           <option selected>Select Country</option>
           <option value="Canada">Canada</option>
-          <option value="USA">USA</option>
         </select>
       </div>
     </div>
@@ -69,13 +115,20 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="email">Email</label>
-        <input mdbInput mdbValidate name="email" type="email" id="email" class="form-control" #email required>
+
+        <div class="md-form">
+          <label for="email">Email</label>
+          <input mdbInput mdbValidate name="email" type="email" id="email" class="form-control"
+                 [(ngModel)]="shipping_details.email" #email required>
+        </div>
       </div>
 
       <div class="form-group col-md-6">
+        <div class="md-form">
         <label for="phone">Phone</label>
-        <input mdbInput mdbValidate name="phone" type="number" id="phone" class="form-control" #phone required>
+        <input mdbInput mdbValidate name="phone" type="text" id="phone" class="form-control"
+               [(ngModel)]="shipping_details.contact" #phone required>
+        </div>
       </div>
     </div>
   </div>
@@ -86,67 +139,74 @@
 
     <div class="form-row">
       <div class="form-group col-md-6" style="padding-left: 1.5rem;">
-        <mdb-checkbox mdbInput #checkbox (change)="hideBilling = $event.checked" [checked]="hideBilling">Billing and Shipping Details are the same</mdb-checkbox>
+        <mdb-checkbox mdbInput #checkbox (change)="billingSameAsShipping = $event.checked" [checked]="billingSameAsShipping">Billing and
+          Shipping Details are the same
+        </mdb-checkbox>
       </div>
     </div>
 
-    <ng-container *ngIf="!hideBilling">
+    <ng-container *ngIf="!billingSameAsShipping">
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="billingFirstName">First Name</label>
-          <input mdbInput mdbValidate name="billingFirstName" type="text" id="billingFirstName" class="form-control" #billingFirstName required>
+          <input mdbInput mdbValidate name="billingFirstName" type="text" id="billingFirstName" class="form-control"
+                 [(ngModel)]="billing_details.first_name"  #billingFirstName required>
         </div>
 
         <div class="form-group col-md-6">
           <label for="billingLastName">Last Name</label>
-          <input mdbInput mdbValidate name="billingLastName" type="text" id="billingLastName" class="form-control" #billingLastName required>
+          <input mdbInput mdbValidate name="billingLastName" type="text" id="billingLastName" class="form-control"
+                 [(ngModel)]="billing_details.last_name"  #billingLastName required>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="billingStreet">Street</label>
-          <input mdbInput mdbValidate name="billingStreet" type="text" id="billingStreet" class="form-control" #billingStreet required>
+          <input mdbInput mdbValidate name="billingStreet" type="text" id="billingStreet" class="form-control"
+                 [(ngModel)]="billing_details.street"  #billingStreet required>
         </div>
 
         <div class="form-group col-md-6">
           <label for="billingUnit">Company, C/O, APT, Suite, Unit</label>
-          <input mdbInput mdbValidate name="billingUnit" type="text" id="billingUnit" class="form-control" #billingUnit required>
+          <input mdbInput mdbValidate name="billingUnit" type="text" id="billingUnit" class="form-control" #billingUnit
+                 [(ngModel)]="billing_details.unit"  required>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="billingCity">City</label>
-          <input mdbInput mdbValidate name="billingCity" type="text" id="billingCity" class="form-control" #billingCity required>
+          <input mdbInput mdbValidate name="billingCity" type="text" id="billingCity" class="form-control" #billingCity
+                 [(ngModel)]="billing_details.city" required>
         </div>
 
         <div class="form-group col-md-6">
           <label for="billingPostalCode">Postal Code</label>
-          <input mdbInput mdbValidate name="billingPostalCode" type="text" id="billingPostalCode" class="form-control" #billingPostalCode required>
+          <input mdbInput mdbValidate name="billingPostalCode" type="text" id="billingPostalCode" class="form-control"
+                 [(ngModel)]="billing_details.postal" #billingPostalCode required>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="billingState">State</label>
-          <select class="browser-default custom-select" name="billingState" id="billingState" required>
+          <select class="browser-default custom-select" name="billingState" id="billingState"
+                  [(ngModel)]="billing_details.province" required >
             <option selected>Select State</option>
-            <option value="Ontario">Ontario</option>
-            <option value="Nova Scotia">Nova Scotia</option>
-            <option value="Quebec">Quebec</option>
-            <option value="California">California</option>
-            <option value="Texas">Texas</option>
-            <option value="Florida">Florida</option>
+            <option value="ON">Ontario</option>
+            <option value="NS">Nova Scotia</option>
+            <option value="QC">Quebec</option>
+            <option value="BC">British Columbia</option>
           </select>
         </div>
 
         <div class="form-group col-md-6">
           <label for="billingCountry">Country</label>
-          <select class="browser-default custom-select" name="billingCountry" id="billingCountry" required>
+          <select class="browser-default custom-select" name="billingCountry" id="billingCountry"
+                  [(ngModel)]="billing_details.country" required>
             <option selected>Select Country</option>
             <option value="Canada">Canada</option>
-            <option value="USA">USA</option>
           </select>
         </div>
       </div>
@@ -155,7 +215,7 @@
 
   <div class="form-row justify-content-center">
     <div class="form-group col-md-6">
-      <button class="btn-continue-payment" type="submit">Continue to Payment Method</button>
+      <button class="btn-continue-payment" type="submit" (click)="placeOrder()">Place Order</button>
     </div>
   </div>
 

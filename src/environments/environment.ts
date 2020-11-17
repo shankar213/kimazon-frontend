@@ -23,6 +23,10 @@ export const environment = {
     add_product_image: '/:product_id/image',
     products_for_seller: '/seller/:seller_id',
     get_products_selectedids: '/selectedids'
+  },
+  orders: {
+    prefix: '/api/orders',
+    add_order: '/'
   }
 };
 
