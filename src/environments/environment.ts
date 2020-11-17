@@ -13,6 +13,10 @@ export const environment = {
     send_security_code: '/send-security-code',
     password_reset_email: '/password-change-request'
   },
+  users: {
+    prefix: '/api/users',
+    get_users: '/'
+  },
   products: {
     prefix: '/api/products',
     add_product: '/',
