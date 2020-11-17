@@ -30,9 +30,8 @@ export class SecondFactorComponent implements OnInit {
   private sendSecurityCode() {
     const body = {email: this.user.email};
     this._authService.sendEmailForVerification(body).subscribe((response: any) => {
-      console.log('security response', response);
+
       if (response && response.data && response.data.security_code) {
-        console.log('security data', response.data);
         this._utilService.toast('Mail Sent Successfully with the Security Code');
         this.validCode = response.data.security_code;
         this._utilService.setLocalStorage('security-code', this.validCode);
@@ -44,13 +43,15 @@ export class SecondFactorComponent implements OnInit {
 
   validateSecurityCode(): void {
     this.validCode = this._utilService.getLocalStorageItem('security-code');
-    console.log(this.validCode, this.securityCode);
+
     if (this.securityCode === this.validCode) {
       this._utilService.toast('Security Code Verified');
       if (this._sessionService.isSeller()) {
         this._router.navigate(['/partner']);
       } else if (this._sessionService.isCustomer()) {
         this._router.navigate(['/public']);
+      } else if (this._sessionService.isAdmin()) {
+        this._router.navigate(['/admin']);
       }
 
     } else {

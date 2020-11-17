@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {SessionService} from "../../../shared/services/session.service";
-import {Router} from "@angular/router";
-import {UtilsService} from "../../../shared/services/utils.service";
-import {Product} from "../../../shared/models/Product";
-import {ProductService} from "../../../shared/services/product.service";
-import {APP_CONSTANTS} from "../../../shared/constants/app-constants";
+import {SessionService} from '../../../shared/services/session.service';
+import {Router} from '@angular/router';
+import {UtilsService} from '../../../shared/services/utils.service';
+import {Product} from '../../../shared/models/Product';
+import {ProductService} from '../../../shared/services/product.service';
+import {APP_CONSTANTS} from '../../../shared/constants/app-constants';
 
 @Component({
   selector: 'app-products',
@@ -50,7 +50,7 @@ export class ProductsComponent implements OnInit {
 
   addToCart(itemId: number) {
     if (this._sessionService.getUser()) {
-        this.cartItems[itemId] = 1;
+      this.cartItems[itemId] = 1;
       this._utilService.setLocalStorage(APP_CONSTANTS.FIELD_CART_ITEMS, JSON.stringify(this.cartItems));
     } else {
       this._router.navigate(['/auth/login']);
@@ -59,8 +59,7 @@ export class ProductsComponent implements OnInit {
   }
 
   removeFromCart(id: number) {
-    delete this.cartItems[id]
-    console.log(this.cartItems)
+    delete this.cartItems[id];
     this._utilService.setLocalStorage(APP_CONSTANTS.FIELD_CART_ITEMS, JSON.stringify(this.cartItems));
   }
 }

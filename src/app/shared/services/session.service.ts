@@ -45,6 +45,10 @@ export class SessionService {
     return this._utilService.getLocalStorageItem(APP_CONSTANTS.FIELD_ROLE) === ROLES.CUSTOMER.code;
   }
 
+  isAdmin(): any {
+    return this._utilService.getLocalStorageItem(APP_CONSTANTS.FIELD_ROLE) === ROLES.ADMIN.code;
+  }
+
   addSessionItem(key, value): any {
     window.sessionStorage.setItem(key, value);
   }
