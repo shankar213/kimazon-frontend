@@ -8,11 +8,13 @@ import {MDBRootModule} from 'angular-bootstrap-md';
 import { SecondFactorComponent } from './second-factor/second-factor.component';
 import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
 import {ChangePasswordComponent} from "./change-password/change-password.component";
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, SecondFactorComponent, ForgotPasswordComponent,
-    ChangePasswordComponent],
+    ChangePasswordComponent,
+    UserProfileComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

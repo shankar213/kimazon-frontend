@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SessionService} from "../../../shared/services/session.service";
+import {AuthService} from "../../../shared/services/auth.service";
+import {UtilsService} from "../../../shared/services/utils.service";
 
 @Component({
     selector: 'app-change-password',
@@ -7,17 +10,34 @@ import { ActivatedRoute } from '@angular/router';
     styleUrls: ['./change-password.component.css']
 })
 export class ChangePasswordComponent implements OnInit {
-    token: string;
-    passwordData: any;
+  token: string;
+  passwordData: any = {};
 
-    constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private _sessionService: SessionService,
+              private _authService: AuthService, private _utilService: UtilsService,
+              private _router: Router) {
+  }
+
+  ngOnInit(): void {
+    this.token = this.route.snapshot.paramMap.get('token');
+    this.getUserDetails();
+  }
+
+  getUserDetails() {
+  }
+
+  changePassword() {
+    console.log(this.passwordData);
+    this.passwordData.email = this._sessionService.getUser().email;
+    if (this.passwordData.password === this.passwordData.cpassword) {
+      this._authService.changePassword(this.passwordData).subscribe(response => {
+        if (response.data.email) {
+          this._utilService.toast('Password has been changed successfully!');
+          this._router.navigate(['/auth/login']);
+        }
+      });
+    } else {
+      this._utilService.toast('Check your password entered!', 'Error!', 'error');
     }
-
-    ngOnInit(): void {
-        this.token = this.route.snapshot.paramMap.get('token');
-    }
-
-    changePassword() {
-
-    }
+  }
 }

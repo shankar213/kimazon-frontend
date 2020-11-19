@@ -11,11 +11,13 @@ export const environment = {
     register: '/register',
     login: '/login',
     send_security_code: '/send-security-code',
-    password_reset_email: '/password-change-request'
+    password_reset_email: '/password-change-request',
+    change_password: '/change-password'
   },
   users: {
     prefix: '/api/users',
-    get_users: '/'
+    get_users: '/',
+    get_user_details: '/:user_id'
   },
   products: {
     prefix: '/api/products',
