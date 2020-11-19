@@ -62,7 +62,11 @@ export class ProductService {
 
   getProductsFromCart(body) {
     const url = `${this._utilsService.linkGeneration(environment.products, environment.products.get_products_selectedids)}`;
-    console.log(url);
     return this._utilsService.callPostAPI(url, body);
+  }
+
+  placeOrder(orderDetails) {
+    const url = `${this._utilsService.linkGeneration(environment.orders, environment.orders.add_order)}`;
+    return this._utilsService.callPostAPI(url, orderDetails);
   }
 }

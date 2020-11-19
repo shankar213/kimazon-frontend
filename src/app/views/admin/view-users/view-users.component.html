@@ -10,10 +10,9 @@
       <div class="md-form col-md-3 align-self-center" style="margin-top: 0">
         <select class="browser-default custom-select md-select col xs-6" name="role" [(ngModel)]="filter.role"
                 #role="ngModel" (ngModelChange)="onRoleSelected(role.value)">
-          <option selected="" value="" required="">Select Category</option>
+          <option value="ALL USERS" selected>ALL USERS</option>
           <option value="CUSTOMER">CUSTOMER</option>
           <option value="SELLER">SELLER</option>
-          <option value="ALL USERS">ALL USERS</option>
         </select>
       </div>
     </div>
@@ -31,35 +30,41 @@
         <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
             scope="row">{{i + 1}}</th>
         <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.role}}</td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.first_name}}</td>
-        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.last_name}}</td>
+        <td
+          *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.first_name}}</td>
+        <td
+          *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.last_name}}</td>
         <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.email}}</td>
-<!--        <td>-->
-<!--          <button class="btn btn-sm btn-primary" (click)="goToEdit(el.id)"> EDIT</button>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <button class="btn btn-sm btn-danger" (click)="deleteProduct(el.id)"> DELETE</button>-->
-<!--        </td>-->
+        <!--        <td>-->
+        <!--          <button class="btn btn-sm btn-primary" (click)="goToEdit(el.id)"> EDIT</button>-->
+        <!--        </td>-->
+        <!--        <td>-->
+        <!--          <button class="btn btn-sm btn-danger" (click)="deleteProduct(el.id)"> DELETE</button>-->
+        <!--        </td>-->
       </tr>
       </tbody>
       <tfoot class="grey lighten-5 w-100">
       <tr>
-        <td colspan="6">
-          <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+        <td colspan="3"></td>
+        <td colspan="1" class="text-right">
+          <select class="browser-default custom-select md-select col xs-6" name="pageSize" [(ngModel)]="pageSize"
+                  (ngModelChange)="resetPager()">
+            <option value="10" selected>10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+          </select>
+        </td>
+        <td colspan="2">
+          <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"
+                                searchPagination="true"></mdb-table-pagination>
         </td>
       </tr>
       </tfoot>
       <tbody *ngIf="filteredUsers.length <= 0">
-      <tr >
-        <td colspan="6" class="text-center"><h4>No Users available</h4> </td>
-<!--          <h5> Click the button below to add one</h5></td>-->
+      <tr>
+        <td colspan="6" class="text-center"><h4>No Users available</h4></td>
       </tr>
       </tbody>
     </table>
-
-<!--    <button class="btn-background" type="submit" [routerLink]="['/partner/add-product']" style="margin-top: 10px">Add-->
-<!--      New Product-->
-<!--    </button>-->
-
   </div>
 </div>
