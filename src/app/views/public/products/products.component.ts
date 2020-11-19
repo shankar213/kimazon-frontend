@@ -27,6 +27,7 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.getAllProducts();
     this.filter.price = {};
+    this.filter.category = '';
     const cartString = this._utilService.getLocalStorageItem(APP_CONSTANTS.FIELD_CART_ITEMS);
     this.cartItems = cartString ? JSON.parse(cartString) : {};
   }
