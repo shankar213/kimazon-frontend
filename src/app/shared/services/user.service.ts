@@ -25,4 +25,10 @@ export class UserService {
     return this._utilsService.callGetAPI(url);
   }
 
+  updateUserProfile(body, userId) {
+    let url = `${this._utilsService.linkGeneration(environment.users, environment.users.get_user_details)}`;
+    url = url.replace(':user_id', userId.toString());
+    return this._utilsService.callPutAPI(url, body);
+  }
+
 }
