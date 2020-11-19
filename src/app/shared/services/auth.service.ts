@@ -62,4 +62,9 @@ export class AuthService {
     const url = this._utilsService.linkGeneration(environment.auth, environment.auth.send_security_code);
     return this._utilsService.callPostAPI(url, body);
   }
+
+  changePassword(body) {
+    const url = this._utilsService.linkGeneration(environment.auth, environment.auth.change_password);
+    return this._utilsService.callPostAPI(url, body);
+  }
 }

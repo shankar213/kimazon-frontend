@@ -1,0 +1,66 @@
+<div id="auth-container">
+  <div id="form-auth">
+    <div class="row justify-content-md-center">
+      <div class="col ">
+        <form class="bg-white p-5">
+          <p class="h4 mb-4 text-center">Update Your Profile</p>
+          <p class="h6 mb-4 text-center">Email: {{user.email}}</p>
+          <div class="form-row mb-4">
+            <div class="col">
+              <!-- First name -->
+              <div class="md-form">
+                <input mdbInput mdbValidate name="firstName" type="text" id="firstName"
+                       class="form-control"
+                       [(ngModel)]="user.first_name" #firstName="ngModel" required [disabled]="!isUpdateMode">
+                <label for="firstName">First Name</label>
+                <mdb-error *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">First
+                  Name
+                  Please
+                </mdb-error>
+                <mdb-success *ngIf="firstName.valid && (firstName.dirty || firstName.touched)">
+                  <mdb-icon fas icon="check" size="lg"></mdb-icon>
+                </mdb-success>
+              </div>
+            </div>
+
+            <div class="col">
+              <!-- Last name -->
+              <div class="md-form">
+                <input mdbInput mdbValidate name="lastName" type="text" id="lastName"
+                       class="form-control"
+                       [(ngModel)]="user.last_name" #lastName="ngModel" required [disabled]="!isUpdateMode">
+                <label for="lastName">Last Name</label>
+                <mdb-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">Last Name Please
+                </mdb-error>
+                <mdb-success *ngIf="lastName.valid && (lastName.dirty || lastName.touched)">
+                  <mdb-icon fas icon="check" size="lg"></mdb-icon>
+                </mdb-success>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="md-form">
+            <input mdbInput mdbValidate name="phone" type="tel" id="phone" class="form-control"
+                   [(ngModel)]="user.phone"
+                   #phone="ngModel" required pattern="[0-9- ]+" [disabled]="!isUpdateMode">
+            <label for="phone">Phone</label>
+            <mdb-error *ngIf="phone.invalid && (phone.dirty || phone.touched)">Please enter a valid Phone
+              Number
+            </mdb-error>
+            <mdb-success *ngIf="phone.valid && (phone.dirty || phone.touched)">
+              <mdb-icon fas icon="check" size="lg"></mdb-icon>
+            </mdb-success>
+          </div>
+
+          <!-- Update profile button -->
+          <button class="btn-background" (click)="this.isUpdateMode = true" [hidden]="isUpdateMode">Want to update profile?</button>
+          <button class="btn-background" type="submit" (click)="updateProfile()" [hidden]="!isUpdateMode">Update Profile</button>
+
+          <hr>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
