@@ -44,7 +44,13 @@ export class UserProfileComponent implements OnInit {
       this._userService.updateUserProfile(user, this.user.id).subscribe(response => {
         if (response.data.user.id) {
           this._utilService.toast('User profile has been successfully updated!');
-          this._router.navigate(['/partner/products']);
+          if (this._sessionService.isSeller()) {
+            this._router.navigate(['/partner']);
+          } else if (this._sessionService.isCustomer()) {
+            this._router.navigate(['/public']);
+          } else if (this._sessionService.isAdmin()) {
+            this._router.navigate(['/admin']);
+          }
         }
       });
     }
