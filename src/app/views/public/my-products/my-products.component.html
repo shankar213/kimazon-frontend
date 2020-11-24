@@ -1,0 +1,42 @@
+<div class="row justify-content-md-center">
+  <div class="col col-lg-10 col-md-10">
+    <p class="h4 mb-4 text-center">My Products</p>
+    <table id="tableSortExample" mdbTable class="z-depth-1">
+      <thead>
+      <tr>
+        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col"
+            [mdbTableSort]="products" [sortBy]="headElements[i]">{{head | titlecase}}
+          <mdb-icon fas icon="sort"></mdb-icon>
+        </th>
+      </tr>
+      </thead>
+      <tbody *ngIf="products.length > 0">
+      <tr *ngFor="let el of products; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{el.name}}</td>
+        <td>{{el.brand}}</td>
+        <td>{{el.category}}</td>
+        <td>{{el.price}}</td>
+        <td>{{el.qty}}</td>
+        <td>
+          <button class="btn btn-sm btn-primary" (click)="goToEdit(el.id)"> EDIT</button>
+        </td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="deleteProduct(el.id)"> DELETE</button>
+        </td>
+      </tr>
+      </tbody>
+      <tbody *ngIf="products.length <= 0">
+      <tr>
+        <td colspan="6" class="text-center"><h4>No Product available,</h4> <h5> Click the button below to add one</h5>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <button class="btn-background" type="submit" [routerLink]="['/public/add-used-products']" style="margin-top: 10px">Add
+      Used Products to Sell
+    </button>
+
+  </div>
+</div>

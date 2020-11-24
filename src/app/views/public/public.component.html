@@ -12,7 +12,11 @@
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/public/products']">Home<span class="sr-only">(current)</span></a>
+      </li>&nbsp; &nbsp;
+      <li class="nav-item active">
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/public/my-products']"
+           [hidden]="!_sessionService.isCustomer()">My Products<span class="sr-only"></span></a>
       </li>
 
 
