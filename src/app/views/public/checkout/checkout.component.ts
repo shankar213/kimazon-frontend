@@ -49,6 +49,10 @@ export class CheckoutComponent implements OnInit {
         return;
       } else {
         this._utilService.toast('Order has been placed successfully', 'Congratulations!', 'success');
+
+        this._utilService.setLocalStorage(APP_CONSTANTS.FIELD_CART_ITEMS, JSON.stringify({}));
+        this._router.navigate(['/public']);
+
       }
     });
 

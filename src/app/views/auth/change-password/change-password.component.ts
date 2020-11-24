@@ -33,7 +33,13 @@ export class ChangePasswordComponent implements OnInit {
       this._authService.changePassword(this.passwordData).subscribe(response => {
         if (response.data.email) {
           this._utilService.toast('Password has been changed successfully!');
-          this._router.navigate(['/partner/products']);
+          if (this._sessionService.isSeller()) {
+            this._router.navigate(['/partner']);
+          } else if (this._sessionService.isCustomer()) {
+            this._router.navigate(['/public']);
+          } else if (this._sessionService.isAdmin()) {
+            this._router.navigate(['/admin']);
+          }
         }
       });
     } else {
