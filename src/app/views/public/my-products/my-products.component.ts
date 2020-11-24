@@ -1,16 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {ProductService} from '../../../shared/services/product.service';
-import {SessionService} from '../../../shared/services/session.service';
-import {Router} from '@angular/router';
-import {UtilsService} from '../../../shared/services/utils.service';
-import {Product} from '../../../shared/models/Product';
+import { Component, OnInit } from '@angular/core';
+import {PRODUCT_CONDITION} from '../../../shared/constants/enum-constants';
+import {Product} from "../../../shared/models/Product";
+import {ProductService} from "../../../shared/services/product.service";
+import {SessionService} from "../../../shared/services/session.service";
+import {Router} from "@angular/router";
+import {UtilsService} from "../../../shared/services/utils.service";
+
 
 @Component({
-  selector: 'app-all-products',
-  templateUrl: './all-products.component.html',
-  styleUrls: ['./all-products.component.css']
+  selector: 'app-my-products',
+  templateUrl: './my-products.component.html',
+  styleUrls: ['./my-products.component.css']
 })
-export class AllProductsComponent implements OnInit {
+export class MyProductsComponent implements OnInit {
   products: Product[] = [];
 
   constructor(private _productService: ProductService,
@@ -23,6 +25,7 @@ export class AllProductsComponent implements OnInit {
   headElements = ['id', 'name', 'brand', 'category', 'price', 'qty'];
 
   ngOnInit(): void {
+    console.log(PRODUCT_CONDITION);
     this.getAllProducts();
   }
 
@@ -38,7 +41,7 @@ export class AllProductsComponent implements OnInit {
   }
 
   goToEdit(id: number) {
-    this._router.navigate(['/partner/add-product/' + id ], { queryParams: { edit: true }});
+    this._router.navigate(['/public/add-used-products/' + id ], { queryParams: { edit: true }});
   }
 
   deleteProduct(id: number) {
@@ -53,4 +56,5 @@ export class AllProductsComponent implements OnInit {
       this.getAllProducts();
     });
   }
+
 }

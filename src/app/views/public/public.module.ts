@@ -9,16 +9,20 @@ import {FormsModule} from '@angular/forms';
 import {PartnerModule} from '../partner/partner.module';
 import {MyCartComponent} from './my-cart/my-cart.component';
 import {CheckoutComponent} from './checkout/checkout.component';
+import { MyProductsComponent } from './my-products/my-products.component';
+import { AddUsedProductsComponent } from './add-used-products/add-used-products.component';
+import {NgxDropzoneModule} from "ngx-dropzone";
 
 
 @NgModule({
-  declarations: [PublicComponent, ProductsComponent, MyCartComponent, CheckoutComponent],
+  declarations: [PublicComponent, ProductsComponent, MyCartComponent, CheckoutComponent, MyProductsComponent, AddUsedProductsComponent],
   imports: [
     CommonModule,
     PublicRoutingModule,
     MDBBootstrapModule,
     FormsModule,
-    PartnerModule
+    PartnerModule,
+    NgxDropzoneModule
   ]
 })
 export class PublicModule {
