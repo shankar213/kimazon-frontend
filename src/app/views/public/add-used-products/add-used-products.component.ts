@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {Product} from '../../../shared/models/Product';
-import {APP_CONSTANTS} from '../../../shared/constants/app-constants';
-import {SessionService} from '../../../shared/services/session.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {UtilsService} from '../../../shared/services/utils.service';
-import {ProductService} from '../../../shared/services/product.service';
+import { Component, OnInit } from '@angular/core';
+import {Product} from "../../../shared/models/Product";
+import {ProductService} from "../../../shared/services/product.service";
+import {SessionService} from "../../../shared/services/session.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {UtilsService} from "../../../shared/services/utils.service";
+import {APP_CONSTANTS} from "../../../shared/constants/app-constants";
+import {PRODUCT_CONDITION} from "../../../shared/constants/enum-constants";
 
 @Component({
-  selector: 'app-add-product',
-  templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.css']
+  selector: 'app-add-used-products',
+  templateUrl: './add-used-products.component.html',
+  styleUrls: ['./add-used-products.component.css']
 })
-export class AddProductComponent implements OnInit {
+export class AddUsedProductsComponent implements OnInit {
   product: Product = new Product();
   files: File[] = [];
   imageUpload = false;
@@ -23,8 +24,7 @@ export class AddProductComponent implements OnInit {
               private _sessionService: SessionService,
               private _router: Router,
               private _activateRoute: ActivatedRoute,
-              private _utilService: UtilsService) {
-  }
+              private _utilService: UtilsService) { }
 
   ngOnInit(): void {
     this._activateRoute.queryParams
@@ -53,8 +53,9 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-  addProduct(): void {
+  addUsedProduct(): void {
     const reqBody = {};
+    this.product.condition = PRODUCT_CONDITION.USED.code;
     reqBody[APP_CONSTANTS.FIELD_PRODUCT] = this.product;
     this._productService.addProduct(reqBody).subscribe(response => {
       this.afterAddEditProduct(response);
@@ -99,10 +100,10 @@ export class AddProductComponent implements OnInit {
     this.skipButtonText = 'I\'m done.';
   }
 
-  skipToAllProcuts(): void {
+  skipToMyProducts(): void {
     this._sessionService.removeSessionItem('product');
     this._sessionService.removeSessionItem('product_id');
-    this._router.navigate(['/partner/products']);
+    this._router.navigate(['/public/my-products']);
   }
 
   onCategorySelected(event: any): void {

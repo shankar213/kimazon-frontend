@@ -52,6 +52,5 @@ export class AllProductsComponent implements OnInit {
       }
       this.getAllProducts();
     });
-
   }
 }

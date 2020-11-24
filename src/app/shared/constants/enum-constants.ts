@@ -4,3 +4,8 @@ export const ROLES = {
   SELLER: {code: 'SELLER', name: 'Seller'},
 };
 
+export const PRODUCT_CONDITION = {
+  NEW: {code: 'NEW', name: 'New'},
+  USED: {code: 'USED', name: 'Used'},
+};
+

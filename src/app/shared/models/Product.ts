@@ -4,6 +4,7 @@ export class Product {
     brand: string;
     description: string;
     seller_id: number;
+    condition: string;
     price: number;
     images: string[];
     qty: number;
