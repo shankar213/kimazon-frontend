@@ -25,7 +25,6 @@ export class MyProductsComponent implements OnInit {
   headElements = ['id', 'name', 'brand', 'category', 'price', 'qty'];
 
   ngOnInit(): void {
-    console.log(PRODUCT_CONDITION);
     this.getAllProducts();
   }
 

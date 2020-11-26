@@ -27,7 +27,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   changePassword() {
-    console.log(this.passwordData);
+
     this.passwordData.email = this._sessionService.getUser().email;
     if (this.passwordData.password === this.passwordData.cpassword) {
       this._authService.changePassword(this.passwordData).subscribe(response => {

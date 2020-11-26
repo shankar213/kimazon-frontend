@@ -28,6 +28,7 @@ export class ProductsComponent implements OnInit {
     this.getAllProducts();
     this.filter.price = {};
     this.filter.category = '';
+    this.filter.condition = '';
     const cartString = this._utilService.getLocalStorageItem(APP_CONSTANTS.FIELD_CART_ITEMS);
     this.cartItems = cartString ? JSON.parse(cartString) : {};
   }
