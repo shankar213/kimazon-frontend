@@ -64,6 +64,7 @@ export class MyCartComponent implements OnInit {
     this.orderDetails.customer_id = user.id;
     this.productsInCart.forEach((product) => {
       this.orderDetails.items.push({
+        name: product.name,
         product_id: product.id,
         qty: product.qty,
         unit_price: product.price
