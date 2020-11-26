@@ -4,6 +4,7 @@ import {SessionService} from '../../../shared/services/session.service';
 import {Router} from '@angular/router';
 import {UtilsService} from '../../../shared/services/utils.service';
 import {APP_CONSTANTS} from '../../../shared/constants/app-constants';
+import {OrderService} from "../../../shared/services/order.service";
 
 @Component({
   selector: 'app-checkout',
@@ -20,7 +21,8 @@ export class CheckoutComponent implements OnInit {
   constructor(private _productService: ProductService,
               private _sessionService: SessionService,
               private _router: Router,
-              private _utilService: UtilsService) {
+              private _utilService: UtilsService,
+              private _orderService: OrderService) {
   }
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class CheckoutComponent implements OnInit {
     }
     this.orderDetails.billing_details = this.billing_details;
     this.orderDetails.shipping_details = this.shipping_details;
-    this._productService.placeOrder({order_details: this.orderDetails}).subscribe(response => {
+    this._orderService.placeOrder({order_details: this.orderDetails}).subscribe(response => {
       const data = response.data;
       if (!data) {
         this._utilService.toast('Failed to Place order! Try again later', 'Error!', 'error');
