@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {SessionService} from "../../../shared/services/session.service";
-import {AuthService} from "../../../shared/services/auth.service";
-import {UtilsService} from "../../../shared/services/utils.service";
+import {SessionService} from '../../../shared/services/session.service';
+import {AuthService} from '../../../shared/services/auth.service';
+import {UtilsService} from '../../../shared/services/utils.service';
 
 @Component({
-    selector: 'app-change-password',
-    templateUrl: './change-password.component.html',
-    styleUrls: ['./change-password.component.css']
+  selector: 'app-change-password',
+  templateUrl: './change-password.component.html',
+  styleUrls: ['./change-password.component.css']
 })
 export class ChangePasswordComponent implements OnInit {
   token: string;
@@ -33,7 +33,13 @@ export class ChangePasswordComponent implements OnInit {
       this._authService.changePassword(this.passwordData).subscribe(response => {
         if (response.data.email) {
           this._utilService.toast('Password has been changed successfully!');
-          this._router.navigate(['/partner/products']);
+          if (this._sessionService.isSeller()) {
+            this._router.navigate(['/partner']);
+          } else if (this._sessionService.isCustomer()) {
+            this._router.navigate(['/public']);
+          } else if (this._sessionService.isAdmin()) {
+            this._router.navigate(['/admin']);
+          }
         }
       });
     } else {

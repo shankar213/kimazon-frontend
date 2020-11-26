@@ -42,12 +42,13 @@ export class MyCartComponent implements OnInit {
     const itemIds = Object.keys(this.cartItems);
     this._productService.getProductsFromCart({ids: itemIds}).subscribe((response: any) => {
       const data = response.data;
+
+      this.productsInCart = [];
       if (!data || !data.products) {
         this._utilService.toast('Cannot Load Products! Try Again Letter', 'Error!', 'error');
         return;
       }
       if (Array.isArray(data.products)) {
-        this.productsInCart = [];
         data.products.forEach((item) => {
           item.cart_qty = 1;
           this.productsInCart.push(item);
@@ -63,6 +64,7 @@ export class MyCartComponent implements OnInit {
     this.orderDetails.customer_id = user.id;
     this.productsInCart.forEach((product) => {
       this.orderDetails.items.push({
+        name: product.name,
         product_id: product.id,
         qty: product.qty,
         unit_price: product.price
