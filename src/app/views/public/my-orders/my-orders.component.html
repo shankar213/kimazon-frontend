@@ -1,0 +1,33 @@
+<div class="row justify-content-md-center">
+  <div class="col col-lg-10 col-md-10">
+    <p class="h4 mb-4 text-center">My Orders</p>
+    <table id="tableSortExample" mdbTable class="z-depth-1">
+      <thead>
+      <tr>
+        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col"
+            [mdbTableSort]="orders" [sortBy]="headElements[i]">{{head | titlecase}}
+          <mdb-icon fas icon="sort"></mdb-icon>
+        </th>
+      </tr>
+      </thead>
+      <tbody *ngIf="orders.length > 0">
+      <tr *ngFor="let el of orders; let i = index">
+        <td>{{el.name}}</td>
+        <td>$ {{el.unit_price}}</td>
+        <td>{{el.qty}}</td>
+        <td>$ {{el.subtotal}}</td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text-center"><h5>Orders Subtotal: $ {{this.orderSubTotal}}</h5></td>
+        <td colspan="2" class="text-center"><h5>Orders Total: $ {{this.orderTotal}}</h5></td>
+      </tr>
+      </tbody>
+      <tbody *ngIf="orders.length <= 0">
+      <tr>
+        <td colspan="6" class="text-center"><h4>No Orders available,</h4></td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

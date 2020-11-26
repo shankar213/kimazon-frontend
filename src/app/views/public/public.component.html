@@ -17,6 +17,10 @@
       <li class="nav-item active">
         <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/public/my-products']"
            [hidden]="!_sessionService.isCustomer()">My Products<span class="sr-only"></span></a>
+      </li>&nbsp; &nbsp;
+      <li class="nav-item active">
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/public/my-orders']"
+        [hidden]="!_sessionService.isCustomer()">My Orders<span class="sr-only"></span></a>
       </li>
 
 

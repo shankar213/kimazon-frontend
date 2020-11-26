@@ -12,10 +12,11 @@ import {CheckoutComponent} from './checkout/checkout.component';
 import { MyProductsComponent } from './my-products/my-products.component';
 import { AddUsedProductsComponent } from './add-used-products/add-used-products.component';
 import {NgxDropzoneModule} from "ngx-dropzone";
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 
 @NgModule({
-  declarations: [PublicComponent, ProductsComponent, MyCartComponent, CheckoutComponent, MyProductsComponent, AddUsedProductsComponent],
+  declarations: [PublicComponent, ProductsComponent, MyCartComponent, CheckoutComponent, MyProductsComponent, AddUsedProductsComponent, MyOrdersComponent],
   imports: [
     CommonModule,
     PublicRoutingModule,
