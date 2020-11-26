@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {SessionService} from "../../../shared/services/session.service";
-import {AuthService} from "../../../shared/services/auth.service";
-import {UtilsService} from "../../../shared/services/utils.service";
+import {SessionService} from '../../../shared/services/session.service';
+import {AuthService} from '../../../shared/services/auth.service';
+import {UtilsService} from '../../../shared/services/utils.service';
 
 @Component({
-    selector: 'app-change-password',
-    templateUrl: './change-password.component.html',
-    styleUrls: ['./change-password.component.css']
+  selector: 'app-change-password',
+  templateUrl: './change-password.component.html',
+  styleUrls: ['./change-password.component.css']
 })
 export class ChangePasswordComponent implements OnInit {
   token: string;
