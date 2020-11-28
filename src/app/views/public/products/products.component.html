@@ -2,7 +2,7 @@
   <div class="col-md-3 align-self-center"><h1> Products </h1></div>
 
   <!-- Term -->
-  <div class="col-md-4 align-self-center">
+  <div class="col-md-4 align-self-center p-1">
     <div class="md-form">
       <input mdbInput name="term" type="text" id="term" class="form-control"
              [(ngModel)]="filter.term" #term="ngModel" required (change)="getAllProducts()">
@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div class="col-md-3 align-self-center">
+  <div class="col-md-2 align-self-center p-1">
     <div class="md-form">
       <select class="browser-default custom-select md-select col xs-6" name="category" [(ngModel)]="filter.category"
               #category="ngModel" (ngModelChange)="onCategorySelected($event)">
@@ -25,9 +25,19 @@
     </div>
   </div>
 
+  <div class="col-md-1 align-self-center p-1">
+    <div class="md-form">
+      <select class="browser-default custom-select md-select col xs-6" name="category" [(ngModel)]="filter.condition"
+              #condition="ngModel" (ngModelChange)="getAllProducts()">
+        <option selected="" value="" required="">All Conditions</option>
+        <option value="NEW">New</option>
+        <option value="USED">Used</option>
+      </select>
+    </div>
+  </div>
 
   <!-- price -->
-  <div class="md-form col-md-1 align-self-center">
+  <div class="md-form col-md-1 align-self-center p-1">
     <div class="md-form">
       <input mdbInput name="minPrice" type="text" id="min-price" class="form-control"
              [(ngModel)]="filter.price.min" #minPrice="ngModel" required (change)="getAllProducts()">
@@ -36,7 +46,7 @@
   </div>
 
   <!-- price -->
-  <div class="md-form col-md-1 align-self-center">
+  <div class="md-form col-md-1 align-self-center p-1">
     <div class="md-form">
       <input mdbInput name="minPrice" type="text" id="max-price" class="form-control"
              [(ngModel)]="filter.price.max" #maxPrice="ngModel" required (change)="getAllProducts()">

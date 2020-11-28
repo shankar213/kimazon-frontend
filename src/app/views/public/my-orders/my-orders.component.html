@@ -11,22 +11,42 @@
       </tr>
       </thead>
       <tbody *ngIf="orders.length > 0">
-      <tr *ngFor="let el of orders; let i = index">
-        <td>{{el.name}}</td>
-        <td>$ {{el.unit_price}}</td>
-        <td>{{el.qty}}</td>
-        <td>$ {{el.subtotal}}</td>
-      </tr>
-      <tr>
-        <td colspan="2" class="text-center"><h5>Orders Subtotal: $ {{this.orderSubTotal}}</h5></td>
-        <td colspan="2" class="text-center"><h5>Orders Total: $ {{this.orderTotal}}</h5></td>
-      </tr>
+      <ng-container *ngFor="let el of orders; let i = index">
+        <tr style="border-top: 2px solid black" (click)="hideShorOrderDetails(el)">
+          <td>{{el.created_on}}</td>
+          <td>$ {{el.subtotal}}</td>
+          <td>{{el.taxes}}</td>
+          <td>$ {{el.total}}</td>
+        </tr>
+        <tr [class.hide-details]="!el.show">
+          <td colspan="4">
+            <table width="80%" style="margin: auto">
+              <tr>
+                <td colspan="4" class="text-center"><h6>Items </h6></td>
+              </tr>
+              <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Sub Total</th>
+              </tr>
+              <tr *ngFor="let item of el.items; let i = index">
+                <td>{{item.name}}</td>
+                <td>$ {{item.unit_price}}</td>
+                <td>{{item.qty}}</td>
+                <td>$ {{item.subtotal}}</td>
+              </tr>
+              <tr>
+                <td colspan="2"><h6>Shipped To:</h6></td>
+                <td colspan="2">{{el.shipping_details.name}}<br/>{{el.shipping_details.street}}<br/>{{el.shipping_details.city}}<br/>{{el.shipping_details.province}}<br/>{{el.shipping_details.postal}}<br/></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </ng-container>
+
       </tbody>
-      <tbody *ngIf="orders.length <= 0">
-      <tr>
-        <td colspan="6" class="text-center"><h4>No Orders available,</h4></td>
-      </tr>
-      </tbody>
+
     </table>
 
   </div>

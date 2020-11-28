@@ -25,7 +25,6 @@ export class UserProfileComponent implements OnInit {
   getUserDetails() {
     this._userService.getUserDetails(this._sessionService.getUser().id).subscribe(response => {
       this.user = response.data.user;
-      console.log('User', this.user);
     })
   }
 
@@ -37,7 +36,6 @@ export class UserProfileComponent implements OnInit {
         phone: this.user.phone
       }
     };
-    console.log(user);
     if (this.user.first_name === '' || this.user.last_name === '' || this.user.phone === '') {
       this._utilService.toast('Please enter the details', 'Error!', 'error');
     } else {
