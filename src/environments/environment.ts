@@ -33,7 +33,9 @@ export const environment = {
   orders: {
     prefix: '/api/orders',
     add_order: '/',
-    get_orders_placed_by_user: '/user/:user_id'
+    get_orders_placed_by_user: '/user/:user_id',
+    get_orders_for_seller: '/seller/:seller_id',
+    fulfil_order: '/:order_id/fulfil'
   }
 };
 

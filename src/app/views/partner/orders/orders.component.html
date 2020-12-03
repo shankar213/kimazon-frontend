@@ -1,0 +1,101 @@
+<div class="row justify-content-md-center">
+  <div class="col col-lg-10 col-md-10">
+    <p class="h4 mb-4 text-center">Orders Pending to Fulfill</p>
+    <table id="tableSortExample" mdbTable class="z-depth-1">
+      <thead>
+      <tr>
+        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col"
+            [mdbTableSort]="pendingOrders" [sortBy]="headElements[i]">{{head | titlecase}}
+          <mdb-icon fas icon="sort"></mdb-icon>
+        </th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody *ngIf="pendingOrders && pendingOrders.length > 0">
+      <ng-container *ngFor="let el of pendingOrders; let i = index">
+        <tr style="border-top: 2px solid black" (click)="hideShowOrderDetails(el)">
+          <td>{{el.created_on}}</td>
+          <td>{{el.shipping_details.name}}</td>
+          <td>{{el.shipping_details.name}}<br/>{{el.shipping_details.street}}
+            <br/>{{el.shipping_details.city}}, {{el.shipping_details.province}}
+            <br/>{{el.shipping_details.postal}}</td>
+          <td>
+            <button class="btn btn-sm btn-primary" (click)="$event.stopPropagation(); markAsFulfilled(el)"> Fulfill
+            </button>
+          </td>
+        </tr>
+        <tr [class.hide-details]="!el.show">
+          <td colspan="4">
+            <table width="80%" style="margin: auto">
+              <tr>
+                <td colspan="4" class="text-center"><h6>Items </h6></td>
+              </tr>
+              <tr>
+                <th>Item</th>
+                <th>Qty</th>
+              </tr>
+              <tr *ngFor="let item of el.items; let i = index">
+                <td>{{item.name}}</td>
+                <td>{{item.qty}}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </ng-container>
+
+      </tbody>
+      <tbody *ngIf="!(pendingOrders && pendingOrders.length > 0)">
+      <td colspan="4"><h3 class="text-center">No Pending Orders available</h3></td>
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <div class="col col-lg-10 col-md-10 mt-1">
+    <p class="h4 mb-4 text-center">Previously Completed </p>
+    <table id="tableSortCompleted" mdbTable class="z-depth-1">
+      <thead>
+      <tr>
+        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col"
+            [mdbTableSort]="previousOrders" [sortBy]="headElements[i]">{{head | titlecase}}
+          <mdb-icon fas icon="sort"></mdb-icon>
+        </th>
+      </tr>
+      </thead>
+      <tbody *ngIf="previousOrders && previousOrders.length > 0">
+      <ng-container *ngFor="let el of previousOrders; let i = index">
+        <tr style="border-top: 2px solid black" (click)="hideShowOrderDetails(el)">
+          <td>{{el.created_on}}</td>
+          <td>{{el.shipping_details.name}}</td>
+          <td>{{el.shipping_details.name}}<br/>{{el.shipping_details.street}}
+            <br/>{{el.shipping_details.city}}, {{el.shipping_details.province}}
+            <br/>{{el.shipping_details.postal}}</td>
+        </tr>
+        <tr [class.hide-details]="!el.show">
+          <td colspan="4">
+            <table width="80%" style="margin: auto">
+              <tr>
+                <td colspan="4" class="text-center"><h6>Items </h6></td>
+              </tr>
+              <tr>
+                <th>Item</th>
+                <th>Qty</th>
+              </tr>
+              <tr *ngFor="let item of el.items; let i = index">
+                <td>{{item.name}}</td>
+                <td>{{item.qty}}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </ng-container>
+      </tbody>
+      <tbody *ngIf="!(previousOrders && previousOrders.length > 0)">
+      <td colspan="4"><h3 class="text-center">No Previous Orders available</h3></td>
+      </tbody>
+
+    </table>
+
+  </div>
+</div>

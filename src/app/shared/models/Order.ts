@@ -1,4 +1,6 @@
 export class Order {
+  id: number;
+  order_id: number;
   name: string;
   product_id: number;
   qty: number;

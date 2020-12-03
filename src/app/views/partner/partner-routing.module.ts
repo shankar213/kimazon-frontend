@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {PartnerComponent} from './partner.component';
 import {AddProductComponent} from './add-product/add-product.component';
 import {AllProductsComponent} from './all-products/all-products.component';
+import {OrdersComponent} from './orders/orders.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
       {path: 'products', component: AllProductsComponent, pathMatch: 'full'},
       {path: 'add-product', component: AddProductComponent, pathMatch: 'full'},
       {path: 'add-product/:product_id', component: AddProductComponent, pathMatch: 'full'},
+      {path: 'orders', component: OrdersComponent, pathMatch: 'full'},
     ]
   }
 ];

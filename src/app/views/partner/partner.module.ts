@@ -7,9 +7,10 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {NgxDropzoneModule} from 'ngx-dropzone';
 import {AddProductComponent} from './add-product/add-product.component';
 import {AllProductsComponent} from './all-products/all-products.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
-    declarations: [PartnerComponent, AddProductComponent, AllProductsComponent],
+    declarations: [PartnerComponent, AddProductComponent, AllProductsComponent, OrdersComponent],
     exports: [
     ],
     imports: [
