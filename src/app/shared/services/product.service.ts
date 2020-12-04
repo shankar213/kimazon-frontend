@@ -66,4 +66,9 @@ export class ProductService {
   }
 
 
+  getAllProducts() {
+    const url = `${this._utilsService.linkGeneration(environment.products, environment.products.get_all_products)}`;
+    return this._utilsService.callGetAPI(url);
+
+  }
 }

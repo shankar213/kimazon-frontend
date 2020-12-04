@@ -35,12 +35,9 @@
         <td
           *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.last_name}}</td>
         <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.email}}</td>
-        <!--        <td>-->
-        <!--          <button class="btn btn-sm btn-primary" (click)="goToEdit(el.id)"> EDIT</button>-->
-        <!--        </td>-->
-        <!--        <td>-->
-        <!--          <button class="btn btn-sm btn-danger" (click)="deleteProduct(el.id)"> DELETE</button>-->
-        <!--        </td>-->
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" >
+          <button class="btn btn-sm {{el.is_suspended? 'btn-success' : 'btn-danger'}}" (click)="suspendOrUnsuspendUser(el)"> {{el.is_suspended? 'UNSUSPEND' : 'SUSPEND'}}</button>
+        </td>
       </tr>
       </tbody>
       <tfoot class="grey lighten-5 w-100">

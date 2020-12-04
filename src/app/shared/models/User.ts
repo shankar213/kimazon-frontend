@@ -7,4 +7,5 @@ export class User {
   role = 'CUSTOMER';
   c_password: string;
   phone: string;
+  is_suspended: boolean;
 }

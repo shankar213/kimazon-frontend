@@ -1,0 +1,54 @@
+<div class="row justify-content-md-center">
+  <div class="col col-lg-10 col-md-10">
+    <div class="row justify-content-center">
+      <p class="h4 mb-4 text-center">All Products</p>
+    </div>
+    <table id="tableSortExample" #tableEl="mdbTable" mdbTable class="z-depth-1">
+      <thead>
+      <tr>
+        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col"
+            [mdbTableSort]="allProducts" [sortBy]="headElements[i]">{{head | titlecase}}
+          <mdb-icon fas icon="sort"></mdb-icon>
+        </th>
+      </tr>
+      </thead>
+      <tbody *ngIf="allProducts.length > 0">
+      <tr *ngFor="let el of allProducts; let i = index">
+        <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+            scope="row">{{i + 1}}</th>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.name}}</td>
+        <td
+          *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.category}}</td>
+        <td
+          *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.brand}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.qty}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" >
+          <button class="btn btn-sm {{el.is_suspended? 'btn-success' : 'btn-danger'}}" (click)="suspendOrUnsuspendProduct(el)"> {{el.is_suspended? 'UNSUSPEND' : 'SUSPEND'}}</button>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot class="grey lighten-5 w-100">
+      <tr>
+        <td colspan="3"></td>
+        <td colspan="1" class="text-right">
+          <select class="browser-default custom-select md-select col xs-6" name="pageSize" [(ngModel)]="pageSize"
+                  (ngModelChange)="resetPager()">
+            <option value="10" selected>10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+          </select>
+        </td>
+        <td colspan="2">
+          <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"
+                                searchPagination="true"></mdb-table-pagination>
+        </td>
+      </tr>
+      </tfoot>
+      <tbody *ngIf="allProducts.length <= 0">
+      <tr>
+        <td colspan="6" class="text-center"><h4>No Products available</h4></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

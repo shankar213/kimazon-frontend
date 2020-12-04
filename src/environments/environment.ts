@@ -23,6 +23,7 @@ export const environment = {
     prefix: '/api/products',
     add_product: '/',
     get_products: '/filter',
+    get_all_products: '/',
     get_product_details: '/:product_id',
     edit_product: '/:product_id',
     delete_product: '/:product_id',
